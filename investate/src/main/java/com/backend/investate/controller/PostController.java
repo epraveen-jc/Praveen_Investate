@@ -83,4 +83,13 @@ public class PostController {
         List<Notification> notifications = notificationService.getNotificationsForAgent(agentName);
         return ResponseEntity.ok(notifications);
     }
+    @PutMapping("update-post/{postId}")
+    public ResponseEntity<String> updatePostDetails(@PathVariable Long postId, @RequestBody Post postDetails) {
+        try {
+            postService.updatePost(postId, postDetails);
+            return ResponseEntity.ok("Post details updated successfully.");
+        } catch (Exception e) {
+            return ResponseEntity.status(400).body("Post update failed: " + e.getMessage());
+        }
+    }
 }
