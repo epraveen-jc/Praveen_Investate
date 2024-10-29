@@ -34,8 +34,12 @@ public class Profile {
     private String profileImage;
     private String state;
     private String district;
+    
     public String getPassword() {
         return password;
+    }
+    public void setPassword(String p) {
+        this.password = p;
     }
     public Profile(){}
     // Getters and setters

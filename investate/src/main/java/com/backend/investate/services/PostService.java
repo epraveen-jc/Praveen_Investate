@@ -46,4 +46,18 @@ public class PostService {
     public List<Post> getAllSoldPosts() {
         return postRepository.findByIsSoldTrueOrderByCreatedAtDesc();
     }
+    public void updatePost(Long postId, Post postDetails) {
+        Post post = postRepository.findById(postId).orElseThrow(() -> new RuntimeException("Post not found"));
+        post.setAgentName(postDetails.getAgentName());
+        post.setTitle(postDetails.getTitle());
+        post.setImage(postDetails.getImage());
+        post.setPlaceName(postDetails.getPlaceName());
+        post.setGeolocation(postDetails.getGeolocation());
+        post.setDescription(postDetails.getDescription());
+        post.setPricePerSqrFeet(postDetails.getPricePerSqrFeet());
+        post.setTotalSqrFeet(postDetails.getTotalSqrFeet());
+        post.setIsForSale(postDetails.getIsForSale());
+        post.setIsSold(postDetails.getIsSold());
+        postRepository.save(post);
+    }
 }
