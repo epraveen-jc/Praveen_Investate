@@ -9,7 +9,9 @@ import com.backend.investate.repository.ProfileRepository;
 
 @Service
 public class ProfileService {
-
+    /**
+     * @author E Praveen Kumar
+     */
     @Autowired
     private ProfileRepository profileRepository;
 
@@ -25,9 +27,9 @@ public class ProfileService {
         }
         return null; // Invalid credentials
     }
+
     public Profile findByName(String name) {
         return profileRepository.findByName(name);
     }
 
-    
 }

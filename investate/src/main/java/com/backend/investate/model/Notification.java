@@ -8,7 +8,9 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
-
+/**
+ * @author E Praveen Kumar
+ */
 @Entity
 @Data
 public class Notification {

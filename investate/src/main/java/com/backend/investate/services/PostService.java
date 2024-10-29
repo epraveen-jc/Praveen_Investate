@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.backend.investate.model.Post;
 import com.backend.investate.repository.PostRepository;
-
+/**
+ * @author E Praveen Kumar
+ */
 @Service
 public class PostService {
 

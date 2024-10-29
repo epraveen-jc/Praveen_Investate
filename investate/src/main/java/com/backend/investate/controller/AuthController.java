@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.backend.investate.model.Profile;
 import com.backend.investate.services.ProfileService;
-
+/**
+ * @author E Praveen Kumar
+ */
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {

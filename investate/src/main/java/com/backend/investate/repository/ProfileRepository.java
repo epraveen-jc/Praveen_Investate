@@ -6,7 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import com.backend.investate.enums.ProfileType;
 import com.backend.investate.model.Profile;
-
+/**
+ * @author E Praveen Kumar
+ */
 @Repository
 public interface ProfileRepository extends JpaRepository<Profile, Long> {
     

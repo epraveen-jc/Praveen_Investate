@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import com.backend.investate.model.Notification;
 import com.backend.investate.repository.NotificationRepository;
-
+/**
+ * @author E Praveen Kumar
+ */
 @Service
 public class NotificationService {
 

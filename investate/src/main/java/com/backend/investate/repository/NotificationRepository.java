@@ -7,7 +7,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import com.backend.investate.model.Notification;
-
+/**
+ * @author E Praveen Kumar
+ */
 @Repository
 public interface NotificationRepository extends JpaRepository<Notification, Long> {
 

@@ -22,51 +22,57 @@ import com.backend.investate.services.PostService;
 @RestController
 @RequestMapping("/api/posts")
 public class PostController {
-
+    /**
+     * @author E Praveen Kumar
+     */
     @Autowired
     private PostService postService;
     @Autowired
     private NotificationService notificationService;
-    //for users
+
+    // for users
     @PostMapping("/create")
     public ResponseEntity<Post> createPost(@RequestBody Post post) {
         Post createdPost = postService.createPost(post);
         return ResponseEntity.status(201).body(createdPost);
     }
-    //for clients
+
+    // for clients
     @GetMapping("/for-sale") // Updated endpoint to get all posts for sale
     public ResponseEntity<List<Post>> getAllPostsForSale() {
         List<Post> posts = postService.getAllPostsForSale();
         return ResponseEntity.ok(posts);
     }
+
     // for clients
     @GetMapping("/getall")
     public ResponseEntity<List<Post>> getAllPosts() {
         List<Post> posts = postService.getAllPosts();
         return ResponseEntity.ok(posts);
     }
-    //for clients
+
+    // for clients
     @PutMapping("/{postId}/mark-sold")
     public ResponseEntity<Post> markPostAsSold(@PathVariable Long postId) {
         return postService.markAsSold(postId)
-            .map(post -> ResponseEntity.ok(post))
-            .orElse(ResponseEntity.notFound().build());
+                .map(post -> ResponseEntity.ok(post))
+                .orElse(ResponseEntity.notFound().build());
     }
-//for clients
+
+    // for clients
     @GetMapping("/sold")
     public ResponseEntity<List<Post>> getAllSoldPosts() {
         List<Post> soldPosts = postService.getAllSoldPosts();
         return ResponseEntity.ok(soldPosts);
     }
 
-   
-
-    // New endpoint to handle "Deal" action from the client & in frontend we should send clientprofile json
+    // New endpoint to handle "Deal" action from the client & in frontend we should
+    // send clientprofile json
     @PostMapping("/{postId}/deal")
     public ResponseEntity<String> dealPost(@PathVariable Long postId, @RequestBody Profile clientProfile) {
         Post post = postService.findPostById(postId)
                 .orElseThrow(() -> new NoSuchElementException("Post not found"));
-        
+
         notificationService.createNotification(postId, clientProfile.getName(), post.getAgentName());
         System.out.println(post.getAgentName());
         return ResponseEntity.ok("Notification sent to the agent.");
