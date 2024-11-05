@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:layout_gravity="center"
+    android:background="@drawable/glass_background"
+
+    android:id="@+id/linearlayoutbg"
+
+    >
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_gravity="center"
+        android:text="A Buitifull house in the Goa"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/agentName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Samith Roy"
+        android:textSize="15sp"
+         />
+    <TextView
+        android:id="@+id/phoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="990997789"
+        android:textSize="14sp"
+        />
+
+
+    <ImageView
+
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="10dp"
+        />
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="4"
+        android:orientation="horizontal"
+        android:useDefaultMargins="true"
+        android:layout_gravity="center"
+        android:alignmentMode="alignMargins">
+
+        <ImageButton
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:id="@+id/dealButton"
+            android:src="@drawable/deal"
+            android:scaleType="centerCrop"
+            android:background="@color/white"
+            android:layout_row="0"
+            android:layout_column="0"
+            android:layout_marginEnd="50dp"
+
+        android:layout_gravity="center" />
+
+        <TextView
+            android:id="@+id/deal_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deal"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_row="1"
+            android:layout_column="0"
+            android:layout_marginEnd="50dp"
+        android:layout_gravity="center" />
+
+        <ImageButton
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:id="@+id/detailsBtn"
+            android:src="@drawable/info"
+            android:scaleType="centerCrop"
+            android:background="@color/white"
+            android:layout_row="0"
+            android:layout_column="1"
+            android:layout_marginEnd="50dp"
+
+        android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Details"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_row="1"
+            android:layout_column="1"
+            android:layout_marginEnd="50dp"
+            android:layout_gravity="center" />
+
+        <ImageButton
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:id="@+id/locationBtn"
+            android:src="@drawable/globe"
+            android:scaleType="centerCrop"
+            android:background="@color/white"
+            android:layout_row="0"
+            android:layout_column="2"
+            android:layout_marginEnd="50dp"
+
+            android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Location"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_row="1"
+            android:layout_column="2"
+            android:layout_marginEnd="50dp"
+            android:layout_gravity="center" />
+
+        <ImageButton
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:id="@+id/callBtn"
+            android:src="@drawable/callicon"
+            android:scaleType="centerCrop"
+            android:background="@color/white"
+            android:layout_row="0"
+            android:layout_column="3"
+
+        android:layout_gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Call"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_row="1"
+            android:layout_column="3"
+            android:layout_gravity="center" />
+
+    </GridLayout>
+
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/detailsText"
+        android:visibility="gone"
+        />
+
+
+</LinearLayout>

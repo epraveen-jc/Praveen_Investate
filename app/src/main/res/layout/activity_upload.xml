@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+
+    android:padding="16dp">
+
+    <TextView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sell Your Property"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textSize="25dp"
+        android:layout_margin="10dp"
+
+        />
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/agentName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agent Name"
+        android:textSize="18sp"
+        android:paddingBottom="8dp" />
+
+    <EditText
+
+        android:id="@+id/etTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Title"
+        android:paddingBottom="8dp" />
+
+    <Button
+
+        android:id="@+id/btnSelectImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Image"
+        android:paddingBottom="8dp" />
+
+    <ImageView
+        android:id="@+id/imagePreview"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:visibility="gone"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/etPricePerSqrFeet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Price per Sqr Feet"
+        android:paddingBottom="8dp" />
+
+    <EditText
+        android:id="@+id/etTotalSqrFeet"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Total Sqr Feet"
+        android:paddingBottom="8dp" />
+
+    <EditText
+        android:id="@+id/etTotalPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Total Price"
+        android:paddingBottom="8dp" />
+
+    <EditText
+        android:id="@+id/etDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Description"
+        android:paddingBottom="8dp" />
+
+    <Spinner
+        android:id="@+id/spinnerPropertyType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp" />
+
+    <Spinner
+        android:id="@+id/spinnerState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp" />
+
+    <Spinner
+        android:id="@+id/spinnerDistrict"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp" />
+
+    <EditText
+        android:id="@+id/etStreetOrColony"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Street or Colony"
+        android:paddingBottom="8dp" />
+    <EditText
+        android:id="@+id/etKeyWords"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Enter keyWords"
+        android:paddingBottom="8dp" />
+
+    <Button
+        android:id="@+id/btnSelectLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Location"
+        android:paddingBottom="8dp" />
+
+    <Button
+        android:id="@+id/btnUpload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upload Post"
+        android:paddingBottom="8dp" />
+</LinearLayout>

@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="8dp"
+    android:layout_gravity="center"
+    android:background="@drawable/glass_background"
+
+    android:id="@+id/linearlayoutbg"
+
+    >
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:layout_gravity="center"
+        android:text="A Buitifull house in the Goa"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/agentName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Samith Roy"
+        android:textSize="15sp"
+         />
+    <TextView
+        android:id="@+id/phoneNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="990997789"
+        android:textSize="14sp"
+        />
+
+
+    <ImageView
+
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:scaleType="centerCrop"
+        android:layout_marginBottom="10dp"
+        />
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:columnCount="4"
+        android:orientation="horizontal"
+        android:useDefaultMargins="true"
+        android:layout_gravity="center"
+        android:alignmentMode="alignMargins">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/set_sold"
+
+            android:text="set-as-sold"
+            android:layout_row="0"
+            android:layout_column="0"
+
+
+        android:layout_gravity="center" />
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/update_post"
+            android:text="update-post"
+            android:layout_row="0"
+            android:layout_column="1"
+
+
+        android:layout_gravity="center" />
+
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/delete_post"
+            android:text="delete-post"
+            android:layout_row="0"
+            android:layout_column="2"
+
+
+            android:layout_gravity="center" />
+
+
+
+    </GridLayout>
+
+
+
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/detailsText"
+        android:visibility="gone"
+        />
+
+
+</LinearLayout>

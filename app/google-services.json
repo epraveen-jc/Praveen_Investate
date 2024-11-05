@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "778836902399",
+    "firebase_url": "https://investate-66719-default-rtdb.firebaseio.com",
+    "project_id": "investate-66719",
+    "storage_bucket": "investate-66719.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778836902399:android:2c01adf13a518f1598e7ca",
+        "android_client_info": {
+          "package_name": "com.example.praveen_investate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvTDicLn9Yiacvl-aODSj0k9orz0YVV_8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
