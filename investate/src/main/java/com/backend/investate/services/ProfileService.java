@@ -26,14 +26,14 @@ public class ProfileService {
     }
     public Profile registerProfile(Profile profile) {
         // Ideally, hash the password before saving
-        profile.setPassword(new Decryption(profile.getPassword()).getDecryptedString());
+        profile.setPassword(profile.getPassword());
         return profileRepository.save(profile);
     }
 
     public Profile login(String name, String password) {
         Profile profile = profileRepository.findByName(name);
 
-        if (profile != null && profile.getPassword().equals(new Decryption(password).getDecryptedString())) {
+        if (profile != null && profile.getPassword().equals(password)) {
             return profile; // Check hashed passwords in a real application
         }
         return null; // Invalid credentials

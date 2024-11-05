@@ -68,8 +68,8 @@ public class AuthController {
         return ResponseEntity.status(404).body(response);
     }
 
-    @PutMapping("/profile/{name}/reset-password")
-    public ResponseEntity<Map<String, String>> resetPassword(@PathVariable String name, @RequestParam String newPassword) {
+    @PostMapping("/profile/{name}/{newPassword}")
+    public ResponseEntity<Map<String, String>> resetPassword(@PathVariable String name, @PathVariable String newPassword) {
         Map<String, String> response = new HashMap<>();
         try {
             profileService.resetPassword(name, newPassword);
