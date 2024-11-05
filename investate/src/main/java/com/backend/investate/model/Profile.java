@@ -24,17 +24,25 @@ public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    
     private String name;
     private String password;
-    
+    private String email;
     @Enumerated(EnumType.STRING)
     private ProfileType profileType;  // e.g., AGENT, CLIENT, OWNER
+    private String phoneNumber;
     
-    private String profileImage;
+    private String profileImage; // Changed to byte array
     private String state;
     private String district;
+    private String streetOrColony;
+
     
+    public String getProfileImage() {
+        return profileImage ;
+    }
+    public void setProfileImage(String Image) {
+       this.profileImage = Image;
+    }
     public String getPassword() {
         return password;
     }

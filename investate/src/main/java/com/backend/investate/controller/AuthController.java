@@ -1,81 +1,139 @@
-// src/main/java/com/backend/investate/controller/AuthController.java
 package com.backend.investate.controller;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import com.backend.investate.model.Profile;
-import com.backend.investate.model.Post;
 import com.backend.investate.services.ProfileService;
-import com.backend.investate.services.PostService;
 
 @RestController
+@CrossOrigin(origins = "http://10.0.2.2:1010") // Allow requests from this origin
 @RequestMapping("/api/auth")
 public class AuthController {
 
     @Autowired
     private ProfileService profileService;
 
-    @Autowired
-    private PostService postService;
-
     @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody Profile profile) {
+    public ResponseEntity<Map<String, String>> register(@RequestBody Profile profile) {
+        Map<String, String> response = new HashMap<>();
         try {
             profileService.registerProfile(profile);
-            return ResponseEntity.status(201).body("User registered successfully.");
+            response.put("message", "User registered successfully.");
+            return ResponseEntity.status(201).body(response);
         } catch (Exception e) {
-            return ResponseEntity.status(400).body("Registration failed: " + e.getMessage());
+            response.put("error", "Registration failed: " + e.getMessage());
+            return ResponseEntity.status(400).body(response);
+        }
+    }
+
+    @GetMapping("/user/exist-or-not/{name}")
+    public ResponseEntity<Map<String, String>> checkUserExistence(@PathVariable String name) {
+        Map<String, String> response = new HashMap<>();
+        if (profileService.isUserExist(name)) {
+            response.put("message", "User exists.");
+            return ResponseEntity.status(200).body(response);
+        } else {
+            response.put("error", "User not found.");
+            return ResponseEntity.status(404).body(response);
         }
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody Profile profile) {
+    public ResponseEntity<Map<String, String>> login(@RequestBody Profile profile) {
+        Map<String, String> response = new HashMap<>();
         Profile loggedInProfile = profileService.login(profile.getName(), profile.getPassword());
         if (loggedInProfile != null) {
-            return ResponseEntity.ok("Login successful!");
+            response.put("message", "Login successful!");
+            return ResponseEntity.ok(response);
         }
-        return ResponseEntity.status(401).body("Invalid credentials.");
+        response.put("error", "Invalid credentials.");
+        return ResponseEntity.status(401).body(response);
     }
 
     @GetMapping("/profile/{name}")
-    public ResponseEntity<Profile> getProfile(@PathVariable String name) {
+    public ResponseEntity<Map<String, Object>> getProfile(@PathVariable String name) {
+        Map<String, Object> response = new HashMap<>();
         Profile profile = profileService.findByName(name);
         if (profile != null) {
-            return ResponseEntity.ok(profile);
+            response.put("profile", profile);
+            return ResponseEntity.ok(response);
         }
-        return ResponseEntity.status(404).body(null); // User not found
+        response.put("error", "User not found.");
+        return ResponseEntity.status(404).body(response);
     }
 
     @PutMapping("/profile/{name}/reset-password")
-    public ResponseEntity<String> resetPassword(@PathVariable String name, @RequestParam String newPassword) {
+    public ResponseEntity<Map<String, String>> resetPassword(@PathVariable String name, @RequestParam String newPassword) {
+        Map<String, String> response = new HashMap<>();
         try {
             profileService.resetPassword(name, newPassword);
-            return ResponseEntity.ok("Password reset successfully.");
+            response.put("message", "Password reset successfully.");
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
-            return ResponseEntity.status(400).body("Password reset failed: " + e.getMessage());
+            response.put("error", "Password reset failed: " + e.getMessage());
+            return ResponseEntity.status(400).body(response);
         }
     }
 
     @PutMapping("/profile/{name}/update-username")
-    public ResponseEntity<String> updateUsername(@PathVariable String name, @RequestParam String newUsername) {
+    public ResponseEntity<Map<String, String>> updateUsername(@PathVariable String name, @RequestParam String newUsername) {
+        Map<String, String> response = new HashMap<>();
         try {
             profileService.updateUsername(name, newUsername);
-            return ResponseEntity.ok("Username updated successfully.");
+            response.put("message", "Username updated successfully.");
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
-            return ResponseEntity.status(400).body("Username update failed: " + e.getMessage());
+            response.put("error", "Username update failed: " + e.getMessage());
+            return ResponseEntity.status(400).body(response);
         }
     }
 
     @PutMapping("/profile/{name}/update-profile-image")
-    public ResponseEntity<String> updateProfileImage(@PathVariable String name, @RequestParam String imageUrl) {
+    public ResponseEntity<Map<String, String>> updateProfileImage(@PathVariable String name, @RequestParam String imageUrl) {
+        Map<String, String> response = new HashMap<>();
         try {
             profileService.updateProfileImage(name, imageUrl);
-            return ResponseEntity.ok("Profile image updated successfully.");
+            response.put("message", "Profile image updated successfully.");
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
-            return ResponseEntity.status(400).body("Profile image update failed: " + e.getMessage());
+            response.put("error", "Profile image update failed: " + e.getMessage());
+            return ResponseEntity.status(400).body(response);
         }
     }
 
-    
+    @DeleteMapping("/profile/{name}")
+    public ResponseEntity<Map<String, String>> deleteAccount(@PathVariable String name) {
+        Map<String, String> response = new HashMap<>();
+        try {
+            profileService.deleteProfile(name);
+            response.put("message", "Account deleted successfully.");
+            return ResponseEntity.ok(response);
+        } catch (NoSuchElementException e) {
+            response.put("error", "Account not found.");
+            return ResponseEntity.status(404).body(response);
+        } catch (Exception e) {
+            response.put("error", "Failed to delete account: " + e.getMessage());
+            return ResponseEntity.status(400).body(response);
+        }
+    }
+
+    @GetMapping("/email/{email}")
+    public ResponseEntity<Map<String, Object>> getProfileByEmail(@PathVariable String email) {
+        Map<String, Object> response = new HashMap<>();
+        return ResponseEntity.of(profileService.getProfileByEmail(email)
+            .map(profile -> {
+                response.put("profile", profile);
+                return ResponseEntity.ok(response);
+            })
+            .orElseGet(() -> {
+                response.put("error", "Profile not found.");
+                return ResponseEntity.status(404).body(response);
+            }));
+    }
 }

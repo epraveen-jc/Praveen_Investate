@@ -4,22 +4,32 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
-import com.backend.investate.model.Notification;
+import com.backend.investate.enums.PropertyType;
+import com.backend.investate.model.NotificationsForAgent;
 import com.backend.investate.model.Post;
 import com.backend.investate.model.Profile;
-import com.backend.investate.services.NotificationService;
+import com.backend.investate.services.NotificationServiceForClients;
 import com.backend.investate.services.PostService;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestMapping;
+
 @RestController
+@CrossOrigin(origins = "http://10.0.2.2:1010") // Adjust the origin as necessary
 @RequestMapping("/api/posts")
 public class PostController {
     /**
@@ -27,32 +37,31 @@ public class PostController {
      */
     @Autowired
     private PostService postService;
-    @Autowired
-    private NotificationService notificationService;
+    
 
     // for users
-    @PostMapping("/create")
+    @PostMapping("/create-post")
     public ResponseEntity<Post> createPost(@RequestBody Post post) {
         Post createdPost = postService.createPost(post);
         return ResponseEntity.status(201).body(createdPost);
     }
 
     // for clients
-    @GetMapping("/for-sale") // Updated endpoint to get all posts for sale
+    @GetMapping("/getall-posts-for-sale") // Updated endpoint to get all posts for sale
     public ResponseEntity<List<Post>> getAllPostsForSale() {
         List<Post> posts = postService.getAllPostsForSale();
         return ResponseEntity.ok(posts);
     }
 
     // for clients
-    @GetMapping("/getall")
+    @GetMapping("/getall-posts")
     public ResponseEntity<List<Post>> getAllPosts() {
         List<Post> posts = postService.getAllPosts();
         return ResponseEntity.ok(posts);
     }
 
     // for clients
-    @PutMapping("/{postId}/mark-sold")
+    @PutMapping("/mark-sold/{postId}")
     public ResponseEntity<Post> markPostAsSold(@PathVariable Long postId) {
         return postService.markAsSold(postId)
                 .map(post -> ResponseEntity.ok(post))
@@ -60,29 +69,15 @@ public class PostController {
     }
 
     // for clients
-    @GetMapping("/sold")
+    @GetMapping("/getall-posts-sold")
     public ResponseEntity<List<Post>> getAllSoldPosts() {
         List<Post> soldPosts = postService.getAllSoldPosts();
         return ResponseEntity.ok(soldPosts);
     }
 
-    // New endpoint to handle "Deal" action from the client & in frontend we should
-    // send clientprofile json
-    @PostMapping("/{postId}/deal")
-    public ResponseEntity<String> dealPost(@PathVariable Long postId, @RequestBody Profile clientProfile) {
-        Post post = postService.findPostById(postId)
-                .orElseThrow(() -> new NoSuchElementException("Post not found"));
+    
 
-        notificationService.createNotification(postId, clientProfile.getName(), post.getAgentName());
-        System.out.println(post.getAgentName());
-        return ResponseEntity.ok("Notification sent to the agent.");
-    }
 
-    @GetMapping("/{agentName}/notifications")
-    public ResponseEntity<List<Notification>> getAgentNotifications(@PathVariable String agentName) {
-        List<Notification> notifications = notificationService.getNotificationsForAgent(agentName);
-        return ResponseEntity.ok(notifications);
-    }
     @PutMapping("update-post/{postId}")
     public ResponseEntity<String> updatePostDetails(@PathVariable Long postId, @RequestBody Post postDetails) {
         try {
@@ -92,4 +87,62 @@ public class PostController {
             return ResponseEntity.status(400).body("Post update failed: " + e.getMessage());
         }
     }
+
+    @GetMapping("/search")
+    public List<Post> searchPosts(@RequestParam String keyword) {
+        return postService.searchPostsByKeyword(keyword);
+    }
+
+    @DeleteMapping("/delete-post/{postId}")
+    public ResponseEntity<String> deletePost(@PathVariable Long postId) {
+        try {
+            postService.deletePost(postId);
+            return ResponseEntity.ok("Post deleted successfully.");
+        } catch (NoSuchElementException e) {
+            return ResponseEntity.status(404).body("Post not found.");
+        } catch (Exception e) {
+            return ResponseEntity.status(400).body("Failed to delete post: " + e.getMessage());
+        }
+    }
+
+    
+     // Endpoint for uploading an image
+    @PostMapping("/{postId}/uploadImage")
+    public ResponseEntity<Post> uploadImage(@PathVariable Long postId, @RequestParam("image") MultipartFile file) {
+        try {
+            Post post = postService.findPostById(postId)
+                    .orElseThrow(() -> new RuntimeException("Post not found"));
+
+            // Convert the file to byte array
+            post.setImage(file.getBytes()+""); // Directly setting the image as byte[]
+            postService.updatePost(postId, post); // Update the post
+
+            return ResponseEntity.ok(post);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+   
+    @GetMapping("/search-by-keyword/{keyword}")
+    public List<Post> getPostsByKeyword(@PathVariable String keyword) {
+        return postService.getPostsByKeyword(keyword);
+    }
+    @GetMapping("/get-agent/{agentName}")
+    public List<Post> getPostsByAgent(@PathVariable String agentName) {
+        return postService.getPostsByAgentName(agentName);
+    }
+
+
+    @GetMapping("/get-post-by-property-type")
+    public ResponseEntity<List<Post>> getPostsByPropertyType(@RequestParam PropertyType propertyType) {
+        List<Post> posts = postService.findPostsByPropertyType(propertyType);
+        return ResponseEntity.ok(posts);
+    }
+
+
+    
+
+
+    
 }

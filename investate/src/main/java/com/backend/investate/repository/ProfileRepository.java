@@ -1,5 +1,6 @@
 package com.backend.investate.repository;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -22,6 +23,11 @@ public interface ProfileRepository extends JpaRepository<Profile, Long> {
     boolean existsByName(String name);
     
     // Optional: Additional custom queries can be defined here
+    // Find a profile by email
+    Optional<Profile> findByEmail(String email);
+
+    // Custom delete by ID if needed
+    void deleteById(Long id);
     
 }
 
