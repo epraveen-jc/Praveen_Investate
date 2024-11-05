@@ -3,12 +3,7 @@ package com.example.praveen_investate.ui;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.RenderEffect;
-import android.graphics.Shader;
 import android.icu.util.Calendar;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
@@ -22,7 +17,7 @@ import android.widget.Toast;
 import android.widget.VideoView;
 
 import androidx.appcompat.app.AppCompatActivity;
-import android.media.MediaPlayer;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -46,16 +41,18 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.Random;
 
+
 import jp.wasabeef.glide.transformations.BlurTransformation;
 
 public class LoginActivity extends AppCompatActivity {
 
     private VideoView videoView;
+    private int count = 0;
     private ImageView blurredOverlay;
     private EditText editTextName, editTextPassword;
     private Button buttonLogin;
     private RequestQueue requestQueue;
-    private TextView textViewSignUp;
+    private TextView textViewSignUp , resetPwd ;
     private SharedPreferences sharedPreferences;
     private DatabaseHelper databaseHelper;
 
@@ -65,6 +62,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         ImageView blurredImageView = findViewById(R.id.blurredImageView);
         Calendar calendar = Calendar.getInstance();
+        resetPwd = findViewById(R.id.resetPasswordBtn);
         int hour = calendar.get(Calendar.HOUR_OF_DAY); // Get the hour in 24-hour format
 
         // Check if the current time is between 7 PM (19) and 7 AM (7)
@@ -188,15 +186,28 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void loginUser() {
+
+
         String name = editTextName.getText().toString();
         String password = editTextPassword.getText().toString();
 
         JSONObject profile = new JSONObject();
         try {
             profile.put("name", name);
-            profile.put("password", password);
+            profile.put("password",password);
         } catch (JSONException e) {
             e.printStackTrace();
+        }
+        if(count > 3){
+            resetPwd.setVisibility(View.VISIBLE);
+            resetPwd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(LoginActivity.this, ResetPasswordActivity.class);
+                    // Assuming agentName is the username
+                    startActivity(intent);
+                }
+            });
         }
 
         String url = "http://10.0.2.2:1010/api/auth/login"; // Your API endpoint
@@ -222,6 +233,7 @@ public class LoginActivity extends AppCompatActivity {
                         if (error.networkResponse != null) {
                             int statusCode = error.networkResponse.statusCode;
                             if (statusCode == 401) {
+                                count++;
                                 // Unauthorized, likely due to invalid credentials
                                 Log.e("LoginError", "Invalid credentials. Status code: 401");
                                 Toast.makeText(LoginActivity.this, "Login failed. Invalid credentials.", Toast.LENGTH_SHORT).show();

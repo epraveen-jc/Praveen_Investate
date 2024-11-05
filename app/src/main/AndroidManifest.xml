@@ -35,6 +35,8 @@
         <activity android:name=".ui.HomeActivity" />
         <activity android:name=".ui.UploadActivity" />
         <activity android:name=".ui.SettingsActivity" />
+        <activity android:name=".ui.EditPostActivity" />
+        <activity android:name=".ui.ResetPasswordActivity" />
     </application>
 
 </manifest>

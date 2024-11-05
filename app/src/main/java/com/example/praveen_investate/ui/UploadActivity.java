@@ -10,6 +10,8 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Looper;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
@@ -83,7 +85,7 @@ public class UploadActivity extends AppCompatActivity {
 
         // Initialize views
         tvName = findViewById(R.id.agentName);
-        tvNumber = findViewById(R.id.phoneNumber);
+
         etTitle = findViewById(R.id.etTitle);
         etKeyWords = findViewById(R.id.etKeyWords);
         etStreetOrColony = findViewById(R.id.etStreetOrColony);
@@ -98,6 +100,31 @@ public class UploadActivity extends AppCompatActivity {
         btnSelectImage = findViewById(R.id.btnSelectImage); // Make sure you have this button in your layout
         ivSelectedImage = findViewById(R.id.imagePreview);
         spinnerPropertyType = findViewById(R.id.spinnerPropertyType);
+
+        // TextWatcher for monitoring changes in etPricePerSqrFeet and etTotalSqrFeet
+        TextWatcher watcher = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                // No action needed before text changes
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Calculate total price whenever text in etPricePerSqrFeet or etTotalSqrFeet changes
+                calculateTotalPrice();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                // No action needed after text changes
+            }
+        };
+
+        // Attach TextWatcher to etPricePerSqrFeet and etTotalSqrFeet
+        etPricePerSqrFeet.addTextChangedListener(watcher);
+        etTotalSqrFeet.addTextChangedListener(watcher);
+
+
         try{
 
             tvName.setText(new DatabaseHelper(this).getProfile().getName());
@@ -145,7 +172,29 @@ public class UploadActivity extends AppCompatActivity {
         ivSelectedImage.setVisibility(View.VISIBLE);
     }
 
+    private void calculateTotalPrice() {
+        String pricePerSqrFeetText = etPricePerSqrFeet.getText().toString();
+        String totalSqrFeetText = etTotalSqrFeet.getText().toString();
 
+        // Check if both inputs are non-empty
+        if (!pricePerSqrFeetText.isEmpty() && !totalSqrFeetText.isEmpty()) {
+            try {
+                // Parse input values to double and calculate the total price
+                double pricePerSqrFeet = Double.parseDouble(pricePerSqrFeetText);
+                double totalSqrFeet = Double.parseDouble(totalSqrFeetText);
+                double totalPrice = pricePerSqrFeet * totalSqrFeet;
+
+                // Display total price in etTotalPrice
+                etTotalPrice.setText(String.valueOf(totalPrice));
+            } catch (NumberFormatException e) {
+                // If input is not a valid number, clear the result
+                etTotalPrice.setText("");
+            }
+        } else {
+            // Clear etTotalPrice if any of the inputs is empty
+            etTotalPrice.setText("");
+        }
+    }
     private void getCurrentLocation() {
         // Check for location permission
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {

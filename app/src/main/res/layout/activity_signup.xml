@@ -20,6 +20,10 @@
     android:layout_marginTop="100dp"
     android:padding="16dp">
     <TextView
+        android:shadowColor="#80000000"
+        android:shadowDx="20"
+        android:shadowDy="4"
+        android:shadowRadius="10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sign Up"

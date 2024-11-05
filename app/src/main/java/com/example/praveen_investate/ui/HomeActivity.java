@@ -44,6 +44,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity {
@@ -452,14 +453,15 @@ public class HomeActivity extends AppCompatActivity {
                     public void onResponse(JSONArray response) {
                         String arr[] = str.split(" ");
                         int n = arr.length;
-                        if(n==0)n=1;
+
                         Log.e("",response.toString());
                         for (int i = 0; i < response.length(); i++) {
                             try {
                                 if(databaseHelper.getProfile().getName().equals(response.getJSONObject(i).getString("agentName"))){
                                     continue;
                                 }
-                                for (int j = 0; j < n; j++) {
+                                if(n > 0){
+                                    for (int j = 0; j < n; j++) {
 
                                         try {
                                             Long id = response.getJSONObject(i).getLong("id");
@@ -480,57 +482,53 @@ public class HomeActivity extends AppCompatActivity {
                                             String keyWords = response.getJSONObject(i).getString("keyWords");
                                             String propertyType = response.getJSONObject(i).getString("propertyType");
                                             // Modify this as necessary
-                                            if(agentName.toLowerCase().contains(arr[i].toLowerCase())){
+                                            if(agentName.toLowerCase().contains(arr[j].toLowerCase())){
                                                 Post post = new Post(id ,agentName, phoneNumber, title, image, streetOrColony, state, district, geolocation,
                                                         description, pricePerSqrFeet, totalSqrFeet, totalPrice, isForSale, isSold, keyWords, propertyType);
                                                 postList.add(post);
-                                            }
-                                            if(description.toLowerCase().contains(arr[i].toLowerCase())){
+                                            }else if(description.toLowerCase().contains(arr[j].toLowerCase())){
                                                 Post post = new Post(id ,agentName, phoneNumber, title, image, streetOrColony, state, district, geolocation,
                                                         description, pricePerSqrFeet, totalSqrFeet, totalPrice, isForSale, isSold, keyWords, propertyType);
                                                 postList.add(post);
-                                            }
-                                            if(keyWords.toLowerCase().contains(arr[i].toLowerCase())){
+                                            }else
+                                            if(keyWords.toLowerCase().contains(arr[j].toLowerCase())){
                                                 Post post = new Post(id ,agentName, phoneNumber, title, image, streetOrColony, state, district, geolocation,
                                                         description, pricePerSqrFeet, totalSqrFeet, totalPrice, isForSale, isSold, keyWords, propertyType);
                                                 postList.add(post);
-                                            }
-                                            if(phoneNumber.toLowerCase().contains(arr[i].toLowerCase())){
+                                            }else
+                                            if(phoneNumber.toLowerCase().contains(arr[j].toLowerCase())){
                                                 Post post = new Post(id ,agentName, phoneNumber, title, image, streetOrColony, state, district, geolocation,
                                                         description, pricePerSqrFeet, totalSqrFeet, totalPrice, isForSale, isSold, keyWords, propertyType);
                                                 postList.add(post);
-                                            }
-                                            if(state.toLowerCase().contains(arr[i].toLowerCase())){
+                                            }else
+                                            if(state.toLowerCase().contains(arr[j].toLowerCase())){
                                                 Post post = new Post(id ,agentName, phoneNumber, title, image, streetOrColony, state, district, geolocation,
                                                         description, pricePerSqrFeet, totalSqrFeet, totalPrice, isForSale, isSold, keyWords, propertyType);
                                                 postList.add(post);
-                                            }
-                                            if(streetOrColony.toLowerCase().contains(arr[i].toLowerCase())){
+                                            }else
+                                            if(streetOrColony.toLowerCase().contains(arr[j].toLowerCase())){
                                                 Post post = new Post(id ,agentName, phoneNumber, title, image, streetOrColony, state, district, geolocation,
                                                         description, pricePerSqrFeet, totalSqrFeet, totalPrice, isForSale, isSold, keyWords, propertyType);
                                                 postList.add(post);
-                                            }
-                                            if(district.toLowerCase().contains(arr[i].toLowerCase())){
+                                            }else
+                                            if(district.toLowerCase().contains(arr[j].toLowerCase())){
                                                 Post post = new Post(id ,agentName, phoneNumber, title, image, streetOrColony, state, district, geolocation,
                                                         description, pricePerSqrFeet, totalSqrFeet, totalPrice, isForSale, isSold, keyWords, propertyType);
                                                 postList.add(post);
-                                            }
-                                            if((pricePerSqrFeet+"").toLowerCase().contains(arr[i].toLowerCase())){
+                                            }else
+                                            if((pricePerSqrFeet+"").toLowerCase().contains(arr[j].toLowerCase())){
                                                 Post post = new Post(id ,agentName, phoneNumber, title, image, streetOrColony, state, district, geolocation,
                                                         description, pricePerSqrFeet, totalSqrFeet, totalPrice, isForSale, isSold, keyWords, propertyType);
                                                 postList.add(post);
-                                            }
-                                            if((totalSqrFeet+"").toLowerCase().contains(arr[i].toLowerCase())){
+                                            }else
+                                            if((totalSqrFeet+"").toLowerCase().contains(arr[j].toLowerCase())){
                                                 Post post = new Post(id ,agentName, phoneNumber, title, image, streetOrColony, state, district, geolocation,
                                                         description, pricePerSqrFeet, totalSqrFeet, totalPrice, isForSale, isSold, keyWords, propertyType);
                                                 postList.add(post);
-                                            }if((totalPrice+"").toLowerCase().contains(arr[i].toLowerCase())){
+                                            }else if((totalPrice+"").toLowerCase().contains(arr[j].toLowerCase())){
                                                 Post post = new Post(id ,agentName, phoneNumber, title, image, streetOrColony, state, district, geolocation,
                                                         description, pricePerSqrFeet, totalSqrFeet, totalPrice, isForSale, isSold, keyWords, propertyType);
                                                 postList.add(post);
-                                            }
-                                            if(postList.size() == 0){
-                                                showNoPostFoundDialog();
                                             }
 
                                         } catch (JSONException e) {
@@ -539,13 +537,21 @@ public class HomeActivity extends AppCompatActivity {
                                         }
 
 
+                                    }
                                 }
+
 
 
 
                             } catch (JSONException e) {
                                 throw new RuntimeException(e);
                             }
+
+
+                        }
+
+                        if(postList.size() == 0){
+                            showNoPostFoundDialog();
                         }
 
                         adapter.notifyDataSetChanged();

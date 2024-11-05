@@ -1,6 +1,8 @@
 package com.example.praveen_investate.adapter;
 
 
+import static androidx.core.content.ContextCompat.startActivity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -28,6 +30,7 @@ import com.bumptech.glide.Glide;
 import com.example.praveen_investate.R;
 import com.example.praveen_investate.database.DatabaseHelper;
 import com.example.praveen_investate.model.Post;
+import com.example.praveen_investate.ui.EditPostActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -70,6 +73,14 @@ public class PostAdapterForAgents extends RecyclerView.Adapter<PostAdapterForAge
             @Override
             public void onClick(View v) {
                 markPostAsSold(post.getId());
+            }
+        });
+        holder.updatePost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, EditPostActivity.class);
+                intent.putExtra("post",  post);
+                context.startActivity(intent);
             }
         });
 

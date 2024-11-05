@@ -2,9 +2,10 @@ package com.example.praveen_investate.model;
 
 import android.os.Build;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class Post {
+public class Post implements Serializable {
     private Long id;
     private String agentName;
     private String phoneNumber;
