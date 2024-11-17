@@ -84,7 +84,7 @@ public class UploadActivity extends AppCompatActivity {
         setContentView(R.layout.activity_upload);
 
         // Initialize views
-        tvName = findViewById(R.id.agentName);
+        tvName = findViewById(R.id.brokerName);
 
         etTitle = findViewById(R.id.etTitle);
         etKeyWords = findViewById(R.id.etKeyWords);
@@ -264,7 +264,7 @@ public class UploadActivity extends AppCompatActivity {
         if (validateInputs()) {
             // Gather data from input fields
 
-            String agentName = new DatabaseHelper(this).getProfile().getName(); // Replace with actual agent name or add input field
+            String brokerName = new DatabaseHelper(this).getProfile().getName(); // Replace with actual broker name or add input field
             String phoneNumber ="+91"+(new DatabaseHelper(this).getProfile().getPhoneNumber()); // Replace with actual phone number or add input field
             String title = etTitle.getText().toString();
             String propertyType = spinnerPropertyType.getSelectedItem().toString();
@@ -289,7 +289,7 @@ public class UploadActivity extends AppCompatActivity {
 
             // Create the Post object after image is uploaded
             Post post = new Post();
-            post.setAgentName(agentName);
+            post.setBrokerName(brokerName);
             post.setPhoneNumber(phoneNumber);
             post.setTitle(title);
             post.setImage("prafileimage");
@@ -317,7 +317,7 @@ public class UploadActivity extends AppCompatActivity {
         // Convert Post to JSON
         JSONObject postJson = new JSONObject();
         try {
-            postJson.put("agentName", post.getAgentName());
+            postJson.put("brokerName", post.getBrokerName());
             postJson.put("phoneNumber", post.getPhoneNumber());
             postJson.put("title", post.getTitle());
             postJson.put("image", post.getImage()); // Now this will be base64-encoded string

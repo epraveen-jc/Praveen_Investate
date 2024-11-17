@@ -24,7 +24,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.praveen_investate.R;
 import com.example.praveen_investate.adapter.PostAdapter;
-import com.example.praveen_investate.adapter.PostAdapterForAgents;
+import com.example.praveen_investate.adapter.PostAdapterForBrokers;
 import com.example.praveen_investate.database.DatabaseHelper;
 import com.example.praveen_investate.model.Post;
 
@@ -35,7 +35,7 @@ import java.util.List;
 
 public class MyPostsActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
-    private PostAdapterForAgents adapter;
+    private PostAdapterForBrokers adapter;
     private DatabaseHelper databaseHelper;
     private List<Post> postList;
     private ProgressBar progressBar;
@@ -49,7 +49,7 @@ public class MyPostsActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
 
         postList = new ArrayList<>();
-        adapter = new PostAdapterForAgents(this, postList);
+        adapter = new PostAdapterForBrokers(this, postList);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
@@ -66,7 +66,7 @@ public class MyPostsActivity extends AppCompatActivity {
     private void feed() {
         recyclerView = findViewById(R.id.recyclerview);
         postList = new ArrayList<>();
-        adapter = new PostAdapterForAgents(this, postList);
+        adapter = new PostAdapterForBrokers(this, postList);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adapter);
@@ -109,10 +109,10 @@ public class MyPostsActivity extends AppCompatActivity {
                         Log.e("", response.toString());
                         for (int i = 0; i < response.length(); i++) {
                             try {
-                                if (databaseHelper.getProfile().getName().equals(response.getJSONObject(i).getString("agentName"))) {
+                                if (databaseHelper.getProfile().getName().equals(response.getJSONObject(i).getString("brokerName"))) {
                                     try {
                                         Long id = response.getJSONObject(i).getLong("id");
-                                        String agentName = response.getJSONObject(i).getString("agentName");
+                                        String brokerName = response.getJSONObject(i).getString("brokerName");
                                         String phoneNumber = response.getJSONObject(i).getString("phoneNumber");
                                         String title = response.getJSONObject(i).getString("title");
                                         String image = response.getJSONObject(i).getString("image");
@@ -130,7 +130,7 @@ public class MyPostsActivity extends AppCompatActivity {
                                         String propertyType = response.getJSONObject(i).getString("propertyType");
                                         // Modify this as necessary
 
-                                        Post post = new Post(id, agentName, phoneNumber, title, image, streetOrColony, state, district, geolocation,
+                                        Post post = new Post(id, brokerName, phoneNumber, title, image, streetOrColony, state, district, geolocation,
                                                 description, pricePerSqrFeet, totalSqrFeet, totalPrice, isForSale, isSold, keyWords, propertyType);
                                         postList.add(post);
                                     } catch (JSONException e) {

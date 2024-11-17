@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,11 +25,14 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
-        if(new DatabaseHelper(this).getProfile().getProfileType().toLowerCase().equals("agent") ||new DatabaseHelper(this).getProfile().getProfileType().toLowerCase().equals("owner") ){
-            settingsOptions = new String[]{"Logout","My Posts"};
-        }else{
-            settingsOptions = new String[]{"Logout"};
-        }
+        try{
+            if(new DatabaseHelper(this).getProfile().getProfileType().toLowerCase().equals("broker") ||new DatabaseHelper(this).getProfile().getProfileType().toLowerCase().equals("owner") ){
+                settingsOptions = new String[]{"Logout","My Posts" };
+            }else{
+                settingsOptions = new String[]{"Logout" , "Switch to owner" };
+            }
+        }catch(Exception e){}
+
 
         ListView listViewSettings = findViewById(R.id.listViewSettings);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, settingsOptions);
@@ -37,23 +41,28 @@ public class SettingsActivity extends AppCompatActivity {
         listViewSettings.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                ProgressBar progressBar = findViewById(R.id.progressbar123);
+                progressBar.setVisibility(View.VISIBLE);
                 if (position == 0) { // Logout option
+                    progressBar.setVisibility(View.VISIBLE);
+                    new Handler().postDelayed(() -> {
                     logoutUser();
+                    }, 3000);
                 }
                 if(position == 1){
+                    progressBar.setVisibility(View.VISIBLE);
                     new Handler().postDelayed(() -> {
                         Intent intent = new Intent(SettingsActivity.this, MyPostsActivity.class);
                         startActivity(intent);
                     }, 1500);
                 }
+                progressBar.setVisibility(View.GONE);
             }
         });
     }
 
     private void logoutUser() {
-        // Clear user profile data from SharedPreferences
-        ProfileManager profileManager = new ProfileManager(this);
-        profileManager.clearProfileData();
+
         try{
             DatabaseHelper databaseHelper = new DatabaseHelper(this);
             databaseHelper.clearUserData();

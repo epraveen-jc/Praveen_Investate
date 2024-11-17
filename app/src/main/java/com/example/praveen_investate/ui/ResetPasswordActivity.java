@@ -13,6 +13,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.praveen_investate.R;
+import com.example.praveen_investate.encryption_decryption.PsychoCipher;
 
 public class ResetPasswordActivity extends AppCompatActivity {
     private EditText newPasswordEditText;
@@ -30,7 +31,7 @@ public class ResetPasswordActivity extends AppCompatActivity {
         resetPasswordButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String newPassword = newPasswordEditText.getText().toString();
+                String newPassword = new PsychoCipher(newPasswordEditText.getText().toString()).getEncryptedString();
                 String username = tv.getText().toString(); // Assuming you pass the username from the previous activity
                 resetPassword(username, newPassword);
             }

@@ -8,9 +8,9 @@ public class Profile implements Serializable {
     public   String name;
     private String password;
     private String email;
-    public   String profileType; // You may want to create an enum for this in Android as well
+    public   String profileType;
     private String phoneNumber;
-    private String profileImage; // Storing the image as a byte array
+    private String profileImage;
     private String state;
     private String district;
     private String streetOrColony;

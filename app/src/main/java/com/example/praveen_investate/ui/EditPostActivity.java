@@ -32,7 +32,7 @@ import java.io.IOException;
 
 public class EditPostActivity extends AppCompatActivity {
 
-    private EditText agentNameEditText;
+    private EditText brokerNameEditText;
     private EditText phoneNumberEditText;
     private EditText titleEditText;
     private EditText streetOrColonyEditText;
@@ -66,7 +66,7 @@ public class EditPostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_post);
 
         // Initialize views
-        agentNameEditText = findViewById(R.id.agentNameEditText);
+        brokerNameEditText = findViewById(R.id.brokerNameEditText);
         phoneNumberEditText = findViewById(R.id.phoneNumberEditText);
         titleEditText = findViewById(R.id.titleEditText);
         streetOrColonyEditText = findViewById(R.id.streetOrColonyEditText);
@@ -98,7 +98,7 @@ public class EditPostActivity extends AppCompatActivity {
     }
 
     private void populateFields(Post post) {
-        agentNameEditText.setText(post.getAgentName());
+        brokerNameEditText.setText(post.getBrokerName());
         phoneNumberEditText.setText(post.getPhoneNumber());
         titleEditText.setText(post.getTitle());
         streetOrColonyEditText.setText(post.getStreetOrColony());
@@ -124,7 +124,7 @@ public class EditPostActivity extends AppCompatActivity {
 
 
     private void savePost() {
-        String agentName = agentNameEditText.getText().toString();
+        String brokerName = brokerNameEditText.getText().toString();
         String phoneNumber = phoneNumberEditText.getText().toString();
         String title = titleEditText.getText().toString();
         String streetOrColony = streetOrColonyEditText.getText().toString();
@@ -139,7 +139,7 @@ public class EditPostActivity extends AppCompatActivity {
 
         // Create a new Post object or update the existing one
         if (post != null) {
-            post.setAgentName(agentName);
+            post.setBrokerName(brokerName);
             post.setPhoneNumber(phoneNumber);
             post.setTitle(title);
             post.setStreetOrColony(streetOrColony);
@@ -167,7 +167,7 @@ public class EditPostActivity extends AppCompatActivity {
         // Convert Post to JSON
         JSONObject postJson = new JSONObject();
         try {
-            postJson.put("agentName", post.getAgentName());
+            postJson.put("brokerName", post.getBrokerName());
             postJson.put("phoneNumber", post.getPhoneNumber());
             postJson.put("title", post.getTitle());
             postJson.put("image", post.getImage());

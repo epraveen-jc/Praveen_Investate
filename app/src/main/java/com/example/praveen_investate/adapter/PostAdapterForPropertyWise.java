@@ -1,7 +1,6 @@
 package com.example.praveen_investate.adapter;
 
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -9,38 +8,28 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.request.RequestOptions;
 import com.example.praveen_investate.R;
 import com.example.praveen_investate.database.DatabaseHelper;
 import com.example.praveen_investate.model.Post;
 
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.util.List;
 
-import jp.wasabeef.glide.transformations.BlurTransformation;
-
-public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> {
-
+public class PostAdapterForPropertyWise extends RecyclerView.Adapter<PostAdapterForPropertyWise.MyViewHolder> {
     private final List<Post> postList;
     private final Context context;
     private DatabaseHelper databaseHelper;
-    public PostAdapter(Context context, List<Post> postList) {
+    public PostAdapterForPropertyWise(Context context, List<Post> postList) {
         this.context = context;
         this.postList = postList;
         databaseHelper = new DatabaseHelper(context);
@@ -49,7 +38,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_post, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_post_for_property_wise, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -158,8 +147,7 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullUrl, null,
                 response -> {
                     // Handle the response from the server
-                    showCustomDialog("Deal Request Sent To Agent Successfully. He will Contact You Soon..!");
-                    //Toast.makeText(context, "Notification sent successfully!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Notification sent successfully!", Toast.LENGTH_SHORT).show();
                 },
                 error -> {
                     // Handle error
@@ -168,26 +156,6 @@ public class PostAdapter extends RecyclerView.Adapter<PostAdapter.MyViewHolder> 
                 });
 
         requestQueue.add(jsonObjectRequest);
-    }
-    private void showCustomDialog(String str) {
-        Dialog dialog = new Dialog(context);
-        View dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_layout, null);
-        dialog.setContentView(dialogView);
-
-        TextView tv = dialogView.findViewById(R.id.dialog_text);
-        ImageView dialogImage = dialogView.findViewById(R.id.dialog_image);
-        if (dialogImage != null) {
-            Glide.with(context)
-                    .asGif()
-                    .load(R.drawable.sent)
-                    .into(dialogImage);
-        }
-        tv.setText(str);
-        Button closeButton = dialogView.findViewById(R.id.dialog_button);
-
-        closeButton.setOnClickListener(v -> dialog.dismiss());
-
-        dialog.show();
     }
     static class MyViewHolder extends RecyclerView.ViewHolder {
          ImageButton callBtn;

@@ -34,18 +34,30 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Notification notification = notifications.get(position);
-        holder.nameTextView.setText(notification.getClientName());
-        holder.messageTextView.setText(notification.getMessage());
+        holder.nameTextView.setText("From "+notification.getClientName());
+        holder.messageTextView.setText("Read Message");
         holder.tvClientNumber.setText("Client Number: " + notification.getClientPhoneNumber());
         // Set the onClickListener to initiate a call
         holder.tvClientNumber.setOnClickListener(v -> {
             String clientNumber = notification.getClientPhoneNumber();
             initiateCall(clientNumber);
         });
+        holder.messageTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(holder.messageTextView.getText().equals("Read Message")){
+                    holder.messageTextView.setText(notification.getMessage());
+                }else{
+                    holder.messageTextView.setText("Read Message");
+                }
+
+            }
+        });
 
     }
+
     private void initiateCall(String phoneNumber) {
-        Intent callIntent = new Intent(Intent.ACTION_DIAL); // Use ACTION_CALL to directly call
+        Intent callIntent = new Intent(Intent.ACTION_DIAL);
         callIntent.setData(Uri.parse("tel:" + phoneNumber));
         context.startActivity(callIntent);
     }

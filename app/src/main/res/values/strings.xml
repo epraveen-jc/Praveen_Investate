@@ -3,7 +3,7 @@
 
         <string-array name="profile_types">
             <item>OWNER</item>
-            <item>AGENT</item>
+            <item>BROKER</item>
             <item>CLIENT</item>
         </string-array>
 
@@ -80,10 +80,14 @@
     </string-array>
     <string-array name="property_types">
         <item>APARTMENT</item>
+        <item>RENTAL_HOUSE</item>
+        <item>INDEPENDENT_HOUSE</item>
+        <item>PLOT</item>
+        <item>VILLA</item>
+        <item>GATED_COMMUNITY</item>
+        <item>FARMHOUSE</item>
         <item>COMMERCIAL</item>
-        <item>Industrial</item>
-        <item>Agricultural</item>
-        <item>Mixed Use</item>
+        <item>AGRICULTURAL_LAND</item>
     </string-array>
 
 </resources>

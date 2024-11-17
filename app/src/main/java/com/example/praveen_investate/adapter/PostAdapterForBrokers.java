@@ -1,8 +1,6 @@
 package com.example.praveen_investate.adapter;
 
 
-import static androidx.core.content.ContextCompat.startActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -11,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,12 +34,12 @@ import org.json.JSONObject;
 
 import java.util.List;
 
-public class PostAdapterForAgents extends RecyclerView.Adapter<PostAdapterForAgents.MyViewHolder> {
+public class PostAdapterForBrokers extends RecyclerView.Adapter<PostAdapterForBrokers.MyViewHolder> {
 
     private final List<Post> postList;
     private final Context context;
     private DatabaseHelper databaseHelper;
-    public PostAdapterForAgents(Context context, List<Post> postList) {
+    public PostAdapterForBrokers(Context context, List<Post> postList) {
         this.context = context;
         this.postList = postList;
         databaseHelper = new DatabaseHelper(context);
@@ -51,7 +48,7 @@ public class PostAdapterForAgents extends RecyclerView.Adapter<PostAdapterForAge
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_post_for_agent, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_post_for_broker, parent, false);
         return new MyViewHolder(view);
     }
 
@@ -61,7 +58,7 @@ public class PostAdapterForAgents extends RecyclerView.Adapter<PostAdapterForAge
         Log.e("",post.getId()+"");
         holder.titleTextView.setText(post.getTitle());
 
-        holder.agentName.setText(post.getAgentName());
+        holder.brokerName.setText(post.getBrokerName());
         holder.phoneNumber.setText(post.getPhoneNumber()+"");
         holder.deletePost.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -230,15 +227,15 @@ public class PostAdapterForAgents extends RecyclerView.Adapter<PostAdapterForAge
     }
     private void sendNotification(Post post) {
         RequestQueue requestQueue = Volley.newRequestQueue(context);
-        String url = "http://10.0.2.2:1010/api/notifications/create-agent-notification";
+        String url = "http://10.0.2.2:1010/api/notifications/create-broker-notification";
 
-        // Build the URL with query parameters
+
         String fullUrl = url + "?postId=" + post.getId() +
                 "&clientName=" + Uri.encode(databaseHelper.getProfile().getName()) +
-                "&agentName=" + Uri.encode(post.getAgentName()) +
+                "&brokerName=" + Uri.encode(post.getBrokerName()) +
                 "&clientPhoneNumber=" + Uri.encode(post.getPhoneNumber());
 
-        // Create the JSON object request without params
+
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.POST, fullUrl, null,
                 response -> {
                     // Handle the response from the server
@@ -257,14 +254,14 @@ public class PostAdapterForAgents extends RecyclerView.Adapter<PostAdapterForAge
         TextView titleTextView;
         ImageView imageView;
         Button setSold , updatePost , deletePost;
-        TextView contentTextView , agentName , phoneNumber , detailsText ;
+        TextView contentTextView , brokerName , phoneNumber , detailsText ;
 
 
         MyViewHolder(View itemView) {
             super(itemView);
             titleTextView = itemView.findViewById(R.id.titleTextView);
             imageView = itemView.findViewById(R.id.imageView);
-            agentName = itemView.findViewById(R.id.agentName);
+            brokerName = itemView.findViewById(R.id.brokerName);
             phoneNumber = itemView.findViewById(R.id.phoneNumber);
 
             setSold = itemView.findViewById(R.id.set_sold);

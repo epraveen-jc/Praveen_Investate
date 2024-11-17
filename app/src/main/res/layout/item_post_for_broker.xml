@@ -20,7 +20,7 @@
         android:text="A Buitifull house in the Goa"
         android:textStyle="bold" />
     <TextView
-        android:id="@+id/agentName"
+        android:id="@+id/brokerName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Samith Roy"

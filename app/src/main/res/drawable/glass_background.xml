@@ -3,7 +3,7 @@
     android:shape="rectangle">
 
     <solid android:color="#3DFFFFFF" /> <!-- Change this to set the opacity and color -->
-    <corners android:radius="16dp" /> <!-- Rounded corners -->
+    <corners android:radius="14dp" /> <!-- Rounded corners -->
     <padding
         android:left="8dp"
         android:top="8dp"
@@ -12,5 +12,5 @@
 
     <stroke
         android:width="3dp"
-        android:color="#34C300FF" /> <!-- Optional: White border -->
+        android:color="#3400FFF2" /> <!-- Optional: White border -->
 </shape>

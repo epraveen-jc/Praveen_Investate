@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="#f5f5f5">
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/profile_image"
+        android:layout_gravity="center"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/profilepicrad"
+        android:scaleType="centerCrop"
+        android:src="@drawable/images" />
+
+    <!-- Profile Form -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="50dp">
+
+        <!-- Name Field -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp">
+            <TextView
+                android:id="@+id/profile_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Name"
+                android:textSize="16sp"
+                android:textColor="#333"
+                android:layout_marginBottom="4dp"/>
+            <EditText
+                android:id="@+id/edit_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter name"
+                android:visibility="gone"
+                android:enabled="false"
+                android:padding="12dp"
+                />
+        </FrameLayout>
+
+        <!-- Email Field -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp">
+            <TextView
+                android:id="@+id/profile_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Email"
+                android:textSize="16sp"
+                android:textColor="#333"
+                android:layout_marginBottom="4dp"/>
+            <EditText
+                android:id="@+id/edit_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter email"
+                android:visibility="gone"
+                android:enabled="false"
+                android:padding="12dp"
+                 />
+        </FrameLayout>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+            <TextView
+                android:id="@+id/profileTypeTv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ProfileType"
+                android:textSize="16sp"
+                android:textColor="#333"
+                android:layout_marginBottom="4dp"/>
+            <Spinner
+                android:visibility="gone"
+                android:id="@+id/profileTypeSpinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </FrameLayout>
+
+        <!-- Phone Field -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp">
+            <TextView
+                android:id="@+id/profile_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Phone"
+                android:textSize="16sp"
+                android:textColor="#333"
+                android:layout_marginBottom="4dp"/>
+            <EditText
+                android:id="@+id/edit_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Enter phone number"
+                android:visibility="gone"
+                android:enabled="false"
+                android:padding="12dp"
+              />
+        </FrameLayout>
+
+        <!-- State Field -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp">
+            <TextView
+                android:id="@+id/profile_state"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="State"
+                android:textSize="16sp"
+                android:textColor="#333"
+                android:layout_marginBottom="4dp"/>
+            <Spinner
+                android:visibility="gone"
+                android:id="@+id/state_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </FrameLayout>
+
+        <!-- District Field -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="12dp">
+            <TextView
+                android:id="@+id/profile_district"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="District"
+                android:textSize="16sp"
+                android:textColor="#333"
+                android:layout_marginBottom="4dp"/>
+            <Spinner
+                android:visibility="gone"
+                android:id="@+id/district_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </FrameLayout>
+
+        <!-- Street/Colony Field -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp">
+            <TextView
+                android:id="@+id/profile_street"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Street/Colony"
+                android:textSize="16sp"
+                android:textColor="#333"
+                android:layout_marginBottom="4dp"/>
+            <EditText
+                android:id="@+id/street"
+                android:visibility="gone"
+                android:hint="Enter colony"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="12dp"
+                />
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <!-- Edit Button -->
+    <Button
+        android:id="@+id/edit_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Edit Profile"
+        android:layout_gravity="center"
+        android:padding="12dp"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="#4CAF50"
+        android:textColor="#ffffff"
+        />
+
+</LinearLayout>

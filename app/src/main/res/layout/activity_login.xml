@@ -14,15 +14,15 @@
         />
 
     <TextView
-        android:layout_width="143dp"
+        android:layout_width="180dp"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="140dp"
+        android:layout_marginLeft="120dp"
         android:layout_marginTop="60dp"
-        android:shadowColor="#80000000"
-        android:shadowDx="20"
-        android:shadowDy="4"
-        android:shadowRadius="10"
-        android:text="Inve-state"
+        android:shadowColor="#FF0000"
+        android:shadowDx="1"
+        android:shadowDy="5"
+        android:shadowRadius="40"
+        android:text="INVE-STATE"
         android:textColor="@color/white"
         android:textSize="30dp"
         android:textStyle="bold" />
@@ -45,44 +45,70 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="15dp"
-            android:shadowColor="#80000000"
-            android:shadowDx="20"
-            android:shadowDy="4"
-            android:shadowRadius="10"
+            android:shadowColor="#FF0000"
+            android:shadowDx="1"
+            android:shadowDy="5"
+            android:shadowRadius="40"
             android:text="Login"
             android:textColor="@color/white"
             android:textSize="25dp" />
 
         <EditText
+            android:shadowColor="#FFFFFF"
+            android:shadowDx="1"
+            android:shadowDy="5"
+            android:shadowRadius="40"
             android:id="@+id/editTextName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Username" />
 
         <EditText
+            android:shadowColor="#FFFFFF"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="40"
             android:id="@+id/editTextPassword"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
             android:inputType="textPassword" />
 
-        <Button
-            android:id="@+id/buttonLogin"
-            android:layout_marginTop="30dp"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Login"
-            android:backgroundTint="@android:color/holo_blue_light"/>
+            android:layout_height="wrap_content">
+            <Button
+                android:id="@+id/buttonLogin"
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Login"
+                android:backgroundTint="@android:color/holo_blue_light"/>
+            <ProgressBar
+                android:layout_width="match_parent"
+                android:id="@+id/progressbar12"
+                android:visibility="gone"
+                android:layout_height="40dp"
+                android:layout_marginTop="33dp"
+                />
+
+
+        </FrameLayout>
+
         <TextView
-            android:shadowColor="#91FFFFFF"
-            android:shadowDx="20"
-            android:shadowDy="4"
-            android:shadowRadius="10"
+
+            android:shadowColor="#FFFFFF"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="6"
+            android:textSize="15sp"
+
+            android:textStyle="bold"
             android:id="@+id/textViewSignUp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Don't have an account? Sign Up"
-            android:textColor="@color/black"
+            android:textColor="#FF0000"
             android:layout_gravity="center"
             android:paddingTop="16dp"
             android:clickable="true" />

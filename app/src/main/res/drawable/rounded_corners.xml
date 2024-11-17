@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="#DBFBFF" /> <!-- Background color of the dialog -->
-    <corners android:radius="30dp" /> <!-- Adjust radius for the rounded corners -->
-    <padding
-         />
+    <solid android:color="#1543FFE9"/>
+    <stroke
+        android:width="3dp"
+        android:color="#0EFF0000" /><!-- Background color of the dialog -->
+    <corners android:radius="3dp" /> <!-- Adjust radius for the rounded corners -->
+
 </shape>

@@ -4,10 +4,18 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:padding="20dp"
-
+    android:background="@drawable/cloud_background"
     android:orientation="vertical"
-    android:elevation="8dp">
+    android:elevation="12dp">
 
+
+    <ImageView
+        android:id="@+id/dialog_image"
+        android:layout_width="500dp"
+        android:layout_height="200dp"
+
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"/>
     <TextView
         android:layout_marginTop="40dp"
         android:layout_width="wrap_content"
@@ -17,13 +25,6 @@
         android:id="@+id/dialog_text"
 
         />
-    <ImageView
-        android:id="@+id/dialog_image"
-        android:layout_width="500dp"
-        android:layout_height="200dp"
-
-        android:layout_gravity="center"
-        android:layout_marginTop="16dp"/>
 
     <Button
 

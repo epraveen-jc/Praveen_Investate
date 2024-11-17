@@ -23,6 +23,7 @@ import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.praveen_investate.R;
+import com.example.praveen_investate.encryption_decryption.PsychoCipher;
 import com.example.praveen_investate.model.Profile;
 
 import org.json.JSONException;
@@ -164,7 +165,7 @@ public class SignupActivity extends AppCompatActivity {
 
     public void onRegisterClick(View view) {
         String name = nameEditText.getText().toString().trim();
-        String password = passwordEditText.getText().toString().trim();
+        String password = new PsychoCipher(passwordEditText.getText().toString().trim()).getEncryptedString();
         String email = emailEditText.getText().toString().trim();
         String phone = phoneEditText.getText().toString().trim();
         String colony = colonyEditText.getText().toString().trim();

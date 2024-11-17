@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 public class Post implements Serializable {
     private Long id;
-    private String agentName;
+    private String brokerName;
     private String phoneNumber;
     private String title;
     private String image;
@@ -36,14 +36,14 @@ public class Post implements Serializable {
     // New field for tracking sold status
     private LocalDateTime createdAt;
 
-    public String getAgentName() {
-        return agentName;
+    public String getBrokerName() {
+        return brokerName;
     }
 
 
 
-    public void setAgentName(String agentName) {
-        this.agentName = agentName;
+    public void setBrokerName(String brokerName) {
+        this.brokerName = brokerName;
     }
 
     public void setPhoneNumber(String phoneNumber) {
@@ -174,9 +174,9 @@ public class Post implements Serializable {
         return createdAt;
     }
 
-    public Post(Long id, String agentName,String phoneNumber, String title, String image, String streetOrColony, String state, String district, String geolocation, String description, Double pricePerSqrFeet, Double totalSqrFeet, Double totalPrice, Boolean isForSale, Boolean isSold, String keyWords, String propertyType) {
+    public Post(Long id, String brokerName,String phoneNumber, String title, String image, String streetOrColony, String state, String district, String geolocation, String description, Double pricePerSqrFeet, Double totalSqrFeet, Double totalPrice, Boolean isForSale, Boolean isSold, String keyWords, String propertyType) {
         this.id = id;
-        this.agentName = agentName;
+        this.brokerName = brokerName;
         this.phoneNumber = phoneNumber;
         this.title = title;
         this.image = image;

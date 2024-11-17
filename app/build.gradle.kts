@@ -40,6 +40,11 @@ dependencies {
     implementation ("androidx.swiperefreshlayout:swiperefreshlayout:1.1.0")
     implementation("de.hdodenhof:circleimageview:3.1.0")
 
+
+    implementation("org.java-websocket:Java-WebSocket:1.5.2")
+
+    
+
     implementation("com.android.volley:volley:1.2.1")
     implementation("com.google.android.gms:play-services-location:21.0.1")
     implementation("com.google.android.gms:play-services-maps:18.0.0")

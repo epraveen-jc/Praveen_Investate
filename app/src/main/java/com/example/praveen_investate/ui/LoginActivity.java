@@ -3,15 +3,18 @@ package com.example.praveen_investate.ui;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -28,6 +31,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 import com.example.praveen_investate.R;
 import com.example.praveen_investate.database.DatabaseHelper;
+import com.example.praveen_investate.encryption_decryption.PsychoCipher;
 import com.example.praveen_investate.model.Profile;
 
 import org.json.JSONException;
@@ -54,19 +58,33 @@ public class LoginActivity extends AppCompatActivity {
     private RequestQueue requestQueue;
     private TextView textViewSignUp , resetPwd ;
     private SharedPreferences sharedPreferences;
+    private   ProgressBar progressBar;
     private DatabaseHelper databaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_login);
         ImageView blurredImageView = findViewById(R.id.blurredImageView);
+        progressBar = findViewById(R.id.progressbar12);
         Calendar calendar = Calendar.getInstance();
         resetPwd = findViewById(R.id.resetPasswordBtn);
         int hour = calendar.get(Calendar.HOUR_OF_DAY); // Get the hour in 24-hour format
 
+        editTextName = findViewById(R.id.editTextName);
+        editTextPassword = findViewById(R.id.editTextPassword);
+        buttonLogin = findViewById(R.id.buttonLogin);
+        textViewSignUp = findViewById(R.id.textViewSignUp);
+        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        requestQueue = Volley.newRequestQueue(this);
+        databaseHelper = new DatabaseHelper(this);
+
+
         // Check if the current time is between 7 PM (19) and 7 AM (7)
         if (hour >= 19 || hour < 7) {
+            editTextName.setTextColor(Color.WHITE);
+            editTextPassword.setTextColor(Color.WHITE);
             switch(new Random().nextInt(9)) {
                 case 1 : Glide.with(this)
                         .load(R.drawable.loginback) // Replace with your image resource
@@ -78,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                         .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
                         .into(blurredImageView);
                     break; case 3 : Glide.with(this)
-                        .load(R.drawable.back12) // Replace with your image resource
+                        .load(R.drawable.back4) // Replace with your image resource
                         .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
                         .into(blurredImageView);
                     break; case 4 : Glide.with(this)
@@ -98,7 +116,7 @@ public class LoginActivity extends AppCompatActivity {
                         .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
                         .into(blurredImageView);
                     break; case 8 : Glide.with(this)
-                        .load(R.drawable.back6) // Replace with your image resource
+                        .load(R.drawable.back11) // Replace with your image resource
                         .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
                         .into(blurredImageView);
                     break;
@@ -109,7 +127,10 @@ public class LoginActivity extends AppCompatActivity {
                     break;
             }
         }else{
+            editTextName.setTextColor(Color.BLACK);
+            editTextPassword.setTextColor(Color.BLACK);
             switch(new Random().nextInt(8)) {
+
                 case 1 : Glide.with(this)
                         .load(R.drawable.loginback) // Replace with your image resource
                         .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
@@ -124,7 +145,7 @@ public class LoginActivity extends AppCompatActivity {
                         .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
                         .into(blurredImageView);
                     break; case 4 : Glide.with(this)
-                        .load(R.drawable.back6) // Replace with your image resource
+                        .load(R.drawable.back11) // Replace with your image resource
                         .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
                         .into(blurredImageView);
                     break; case 5 : Glide.with(this)
@@ -148,14 +169,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         }
 
-        editTextName = findViewById(R.id.editTextName);
-        editTextPassword = findViewById(R.id.editTextPassword);
-        buttonLogin = findViewById(R.id.buttonLogin);
-        textViewSignUp = findViewById(R.id.textViewSignUp);
-        sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
-        requestQueue = Volley.newRequestQueue(this);
-        databaseHelper = new DatabaseHelper(this);
-
 
 
 
@@ -168,7 +181,13 @@ public class LoginActivity extends AppCompatActivity {
         buttonLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                loginUser();
+                buttonLogin.setText(" ");
+
+                progressBar.setVisibility(View.VISIBLE);
+                new Handler().postDelayed(() -> {
+                    loginUser();
+                }, 2500);
+
             }
         });
         textViewSignUp.setOnClickListener(new View.OnClickListener() {
@@ -189,7 +208,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
         String name = editTextName.getText().toString();
-        String password = editTextPassword.getText().toString();
+        String password = new PsychoCipher(editTextPassword.getText().toString()).getEncryptedString();
 
         JSONObject profile = new JSONObject();
         try {
@@ -204,7 +223,7 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent intent = new Intent(LoginActivity.this, ResetPasswordActivity.class);
-                    // Assuming agentName is the username
+                    // Assuming brokerName is the username
                     startActivity(intent);
                 }
             });
@@ -224,6 +243,8 @@ public class LoginActivity extends AppCompatActivity {
 
                         // Fetch the profile data after successful login
                         fetchUserProfile(name);
+                        buttonLogin.setText("Login");
+                        progressBar.setVisibility(View.GONE);
                         finish();
                     }
                 },
@@ -233,19 +254,22 @@ public class LoginActivity extends AppCompatActivity {
                         if (error.networkResponse != null) {
                             int statusCode = error.networkResponse.statusCode;
                             if (statusCode == 401) {
-                                count++;
+                                count++;buttonLogin.setText("Login");
+                                progressBar.setVisibility(View.GONE);
                                 // Unauthorized, likely due to invalid credentials
                                 Log.e("LoginError", "Invalid credentials. Status code: 401");
                                 Toast.makeText(LoginActivity.this, "Login failed. Invalid credentials.", Toast.LENGTH_SHORT).show();
                             } else {
                                 // Other server error
                                 Log.e("LoginError", "Server error. Status code: " + statusCode);
-                                showCustomDialog();
+                                showCustomDialog();buttonLogin.setText("Login");
+                                progressBar.setVisibility(View.GONE);
                                 Toast.makeText(LoginActivity.this, "Server error: " + statusCode, Toast.LENGTH_SHORT).show();
                             }
                         } else {
                             // Network error or server is down
-                            showCustomDialog();
+                            showCustomDialog();buttonLogin.setText("Login");
+                            progressBar.setVisibility(View.GONE);
                             Log.e("LoginError", "Server is not reachable or network issue", error);
                             Toast.makeText(LoginActivity.this, "Server is not reachable. Please try again later.", Toast.LENGTH_SHORT).show();
                         }
@@ -348,7 +372,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                 }
             } catch (IOException e) {
-                Toast.makeText(this,"IOEXception ",Toast.LENGTH_LONG).show();
+              //  Toast.makeText(this,"IOEXception ",Toast.LENGTH_LONG).show();
                 e.printStackTrace();
             }
         }).start();
