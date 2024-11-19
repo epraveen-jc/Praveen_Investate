@@ -15,8 +15,8 @@ public interface PostRepository extends JpaRepository<Post, Long> {
     
     List<Post> findByIsForSaleTrueAndIsSoldFalseOrderByCreatedAtDesc(); // Fetch unsold posts for sale
     List<Post> findByIsSoldTrueOrderByCreatedAtDesc(); // Fetch sold posts
-    // Find posts by agent name
-    List<Post> findByAgentName(String agentName);
+    // Find posts by broker name
+    List<Post> findByBrokerName(String brokerName);
 
     // Find posts containing a specific keyword
     List<Post> findByKeyWordsContaining(String keyword);
@@ -24,6 +24,8 @@ public interface PostRepository extends JpaRepository<Post, Long> {
      // New method to find posts by property type
     List<Post> findByPropertyType(PropertyType propertyType);
 
-    public class findById {
-    }
+    
+   
+
+    
 }

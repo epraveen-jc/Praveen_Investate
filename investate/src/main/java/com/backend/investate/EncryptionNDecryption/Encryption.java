@@ -90,11 +90,11 @@ public class Encryption {
     public String getEncryptedString() {
         return encryptedString;
     }
+     /**
+     * * @author E Praveen Kumar * *
+     *                             *
+     */
     
-}
-
-
-     
      /** 
       * HOW IT WORKS ?
       * 
@@ -116,5 +116,5 @@ T     7> the fully constructed encrypted string is stored in encryptedString, re
      *
      * 
      */
-
-
+    
+}

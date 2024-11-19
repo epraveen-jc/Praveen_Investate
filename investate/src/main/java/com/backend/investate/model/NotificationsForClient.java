@@ -2,6 +2,7 @@ package com.backend.investate.model;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,9 +26,10 @@ public class NotificationsForClient {
     private Long id;
     private Long postId;
     private String clientName;
-    private String agentName;
-    private String agentPhoneNumber;
+    private String brokerName;
+    private String brokerPhoneNumber;
     private LocalDateTime createdAt; // New field for tracking deal acceptance
+    @Column(length =2000)
     private String message;  // Example: "Client <clientName> is interested in your post <postId>"
     public NotificationsForClient() {
         this.createdAt = LocalDateTime.now();

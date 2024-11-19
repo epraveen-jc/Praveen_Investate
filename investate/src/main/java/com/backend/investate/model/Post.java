@@ -11,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 /**
  * @author E Praveen Kumar
  */
@@ -19,11 +20,12 @@ import lombok.Setter;
 @AllArgsConstructor
 @Setter
 @Getter
+@ToString
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String agentName;
+    private String brokerName;
     private String phoneNumber;
     private String title;
 

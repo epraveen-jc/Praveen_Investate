@@ -15,13 +15,13 @@ public class NotificationServiceForClients {
     @Autowired
     private NotificationRepositoryForClients notificationRepositoryForClients;
 
-    public NotificationsForClient notifyClient(Long postId, String agentName, String clientName, String agentPhoneNumber) {
+    public NotificationsForClient notifyClient(Long postId, String brokerName, String clientName, String brokerPhoneNumber) {
         NotificationsForClient notification = new NotificationsForClient();
         notification.setPostId(postId);
         notification.setClientName(clientName);
-        notification.setAgentName(agentName);
-        notification.setAgentPhoneNumber(agentPhoneNumber);
-        notification.setMessage("Agent " + agentName + " accepted your deal request for post " + postId + " he will contact you soon.");
+        notification.setBrokerName(brokerName);
+        notification.setBrokerPhoneNumber(brokerPhoneNumber);
+        notification.setMessage("Broker " + brokerName + " accepted your deal request for post " + postId + " he will contact you soon.");
         return notificationRepositoryForClients.save(notification);
     }
 

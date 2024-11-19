@@ -71,10 +71,13 @@ public class PostService {
         
         return filteredPosts;
     }
-    
-     // Find posts by agent name
-     public List<Post> getPostsByAgentName(String agentName) {
-        return postRepository.findByAgentName(agentName);
+    public Post getPostById(Long id) {
+        Optional<Post> postOptional = postRepository.findById(id);
+        return postOptional.orElse(null); 
+    }
+     // Find posts by broker name
+     public List<Post> getPostsByBrokerName(String brokerName) {
+        return postRepository.findByBrokerName(brokerName);
     }
 
     // Find posts by keywords
@@ -85,7 +88,7 @@ public class PostService {
     
     public void updatePost(Long postId, Post postDetails) {
         Post post = postRepository.findById(postId).orElseThrow(() -> new RuntimeException("Post not found"));
-        post.setAgentName(postDetails.getAgentName());
+        post.setBrokerName(postDetails.getBrokerName());
         post.setPhoneNumber(postDetails.getPhoneNumber());
         post.setTitle(postDetails.getTitle());
         post.setImage(postDetails.getImage());

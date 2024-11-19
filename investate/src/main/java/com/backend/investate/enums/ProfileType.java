@@ -2,7 +2,7 @@ package com.backend.investate.enums;
 
 
 public enum ProfileType {
-    AGENT,
+    BROKER,
     CLIENT,
     OWNER;
 }

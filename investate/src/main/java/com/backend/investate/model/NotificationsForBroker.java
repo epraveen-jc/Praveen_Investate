@@ -3,6 +3,7 @@ package com.backend.investate.model;
 
 import java.time.LocalDateTime;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,20 +20,21 @@ import lombok.Setter;
 @Setter
 @Getter
 @AllArgsConstructor
-public class NotificationsForAgent {
+public class NotificationsForBroker {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long postId;
-    private String agentName;
+    private String brokerName;
     private String clientName;
     private String clientPhoneNumber;
-    private LocalDateTime createdAt;
+    private LocalDateTime createdDate;
+    @Column(length =2000)
     private String message;  // Example: "Client <clientName> is interested in your post <postId>"
     
-    public NotificationsForAgent() {
-        this.createdAt = LocalDateTime.now();
+    public NotificationsForBroker() {
+        this.createdDate = LocalDateTime.now();
     }
 
     public void setId(Long postId) {

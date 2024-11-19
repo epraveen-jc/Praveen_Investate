@@ -84,4 +84,9 @@ public class ProfileService {
         profileRepository.delete(profile);
     }
 
+    // Save a Profile (can be used for both create and update)
+    public Profile save(Profile profile) {
+        return profileRepository.save(profile);
+    }
+
 }

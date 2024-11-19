@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.backend.investate.enums.PropertyType;
-import com.backend.investate.model.NotificationsForAgent;
+import com.backend.investate.model.NotificationsForBroker;
 import com.backend.investate.model.Post;
 import com.backend.investate.model.Profile;
 import com.backend.investate.services.NotificationServiceForClients;
@@ -128,9 +128,9 @@ public class PostController {
     public List<Post> getPostsByKeyword(@PathVariable String keyword) {
         return postService.getPostsByKeyword(keyword);
     }
-    @GetMapping("/get-agent/{agentName}")
-    public List<Post> getPostsByAgent(@PathVariable String agentName) {
-        return postService.getPostsByAgentName(agentName);
+    @GetMapping("/get-broker/{brokerName}")
+    public List<Post> getPostsByBroker(@PathVariable String brokerName) {
+        return postService.getPostsByBrokerName(brokerName);
     }
 
 
