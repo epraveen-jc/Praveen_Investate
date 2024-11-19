@@ -2,7 +2,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle">
 
-    <solid android:color="#4BFFFFFF" /> <!-- Change this to set the opacity and color -->
+    <solid android:color="#00FFFFFF" /> <!-- Change this to set the opacity and color -->
     <corners android:radius="14dp" /> <!-- Rounded corners -->
     <padding
         android:left="8dp"
@@ -12,5 +12,5 @@
 
     <stroke
         android:width="3dp"
-        android:color="#3400FFF2" /> <!-- Optional: White border -->
+        android:color="#E500EDE0" /> <!-- Optional: White border -->
 </shape>

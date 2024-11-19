@@ -83,8 +83,7 @@ public class LoginActivity extends AppCompatActivity {
 
         // Check if the current time is between 7 PM (19) and 7 AM (7)
         if (hour >= 19 || hour < 7) {
-            editTextName.setTextColor(Color.WHITE);
-            editTextPassword.setTextColor(Color.WHITE);
+
             switch(new Random().nextInt(9)) {
                 case 1 : Glide.with(this)
                         .load(R.drawable.loginback) // Replace with your image resource
@@ -92,7 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                         .into(blurredImageView);
                     break;
                 case 2 : Glide.with(this)
-                        .load(R.drawable.back1) // Replace with your image resource
+                        .load(R.drawable.back11) // Replace with your image resource
                         .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
                         .into(blurredImageView);
                     break; case 3 : Glide.with(this)
@@ -100,7 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                         .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
                         .into(blurredImageView);
                     break; case 4 : Glide.with(this)
-                        .load(R.drawable.back3) // Replace with your image resource
+                        .load(R.drawable.back4) // Replace with your image resource
                         .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
                         .into(blurredImageView);
                     break; case 5 : Glide.with(this)
@@ -108,11 +107,11 @@ public class LoginActivity extends AppCompatActivity {
                         .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
                         .into(blurredImageView);
                     break; case 6 : Glide.with(this)
-                        .load(R.drawable.back8) // Replace with your image resource
+                        .load(R.drawable.back11) // Replace with your image resource
                         .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
                         .into(blurredImageView);
                     break; case 7 : Glide.with(this)
-                        .load(R.drawable.back9) // Replace with your image resource
+                        .load(R.drawable.back4) // Replace with your image resource
                         .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
                         .into(blurredImageView);
                     break; case 8 : Glide.with(this)
@@ -121,7 +120,7 @@ public class LoginActivity extends AppCompatActivity {
                         .into(blurredImageView);
                     break;
                 default: Glide.with(this)
-                        .load(R.drawable.loginback) // Replace with your image resource
+                        .load(R.drawable.back11) // Replace with your image resource
                         .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
                         .into(blurredImageView);
                     break;
@@ -132,12 +131,12 @@ public class LoginActivity extends AppCompatActivity {
             switch(new Random().nextInt(8)) {
 
                 case 1 : Glide.with(this)
-                        .load(R.drawable.loginback) // Replace with your image resource
+                        .load(R.drawable.back4) // Replace with your image resource
                         .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
                         .into(blurredImageView);
                     break;
                 case 2 : Glide.with(this)
-                        .load(R.drawable.back2) // Replace with your image resource
+                        .load(R.drawable.back4) // Replace with your image resource
                         .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
                         .into(blurredImageView);
                     break; case 3 : Glide.with(this)
@@ -162,7 +161,7 @@ public class LoginActivity extends AppCompatActivity {
                         .into(blurredImageView);
                    break;
                 default: Glide.with(this)
-                        .load(R.drawable.loginback) // Replace with your image resource
+                        .load(R.drawable.back11) // Replace with your image resource
                         .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
                         .into(blurredImageView);
                     break;

@@ -1,6 +1,7 @@
 package com.example.praveen_investate.ui;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -64,12 +65,17 @@ public class SettingsActivity extends AppCompatActivity {
     private void logoutUser() {
 
         try{
+
             DatabaseHelper databaseHelper = new DatabaseHelper(this);
             databaseHelper.clearUserData();
         }catch(Exception e){
             Toast.makeText(this,"database unable to clear ",Toast.LENGTH_SHORT);
         }
 
+        SharedPreferences sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();  // Clears all saved data (like tokens, user info, etc.)
+        editor.apply();
         // Navigate back to MainActivity
         Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Clear the activity stack

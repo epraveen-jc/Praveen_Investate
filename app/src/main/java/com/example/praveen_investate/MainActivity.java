@@ -37,9 +37,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Initialize TelephonyManager
-        telephonyManager = (TelephonyManager) getSystemService(TELEPHONY_SERVICE);
-        getIMEINumber();
         sharedPreferences = getSharedPreferences("MyPrefs", MODE_PRIVATE);
 
         if (sharedPreferences.getBoolean("isLoggedIn", false)) {
@@ -49,29 +46,5 @@ public class MainActivity extends AppCompatActivity {
         }
         finish(); // Close MainActivity after redirecting
     }
-    private void getIMEINumber() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-             uniqueId = Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID);
-            ToastMaker.toast("uni"+uniqueId,this);
-        }  else {
-            imei = telephonyManager.getDeviceId();
-            ToastMaker.toast("imei"+imei,this);
 
-        }
-    }
-
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-
-        if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                // Permission granted, get IMEI number
-                getIMEINumber();
-            } else {
-                // Permission denied, show a message
-                Toast.makeText(this, "Permission Denied. Cannot access IMEI.", Toast.LENGTH_SHORT).show();
-            }
-        }
-    }
 }

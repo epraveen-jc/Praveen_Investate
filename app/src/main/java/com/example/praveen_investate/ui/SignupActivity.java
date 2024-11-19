@@ -1,6 +1,7 @@
 package com.example.praveen_investate.ui;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.util.Log;
@@ -48,56 +49,15 @@ public class SignupActivity extends AppCompatActivity {
         Calendar calendar = Calendar.getInstance();
         int hour = calendar.get(Calendar.HOUR_OF_DAY); // Get the hour in 24-hour format
         if (hour >= 19 || hour < 7) {
+
             switch(new Random().nextInt(9)) {
                 case 1 : Glide.with(this)
-                        .load(R.drawable.back1) // Replace with your image resource
-                        .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
-                        .into(blurredImageView);
-                    break;
-                case 2 : Glide.with(this)
-                        .load(R.drawable.back1) // Replace with your image resource
-                        .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
-                        .into(blurredImageView);
-                    break; case 3 : Glide.with(this)
-                        .load(R.drawable.back12) // Replace with your image resource
-                        .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
-                        .into(blurredImageView);
-                    break; case 4 : Glide.with(this)
-                        .load(R.drawable.back3) // Replace with your image resource
-                        .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
-                        .into(blurredImageView);
-                    break; case 5 : Glide.with(this)
-                        .load(R.drawable.back5) // Replace with your image resource
-                        .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
-                        .into(blurredImageView);
-                    break; case 6 : Glide.with(this)
-                        .load(R.drawable.back8) // Replace with your image resource
-                        .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
-                        .into(blurredImageView);
-                    break; case 7 : Glide.with(this)
-                        .load(R.drawable.back9) // Replace with your image resource
-                        .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
-                        .into(blurredImageView);
-                    break; case 8 : Glide.with(this)
-                        .load(R.drawable.back6) // Replace with your image resource
-                        .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
-                        .into(blurredImageView);
-                    break;
-                default: Glide.with(this)
-                        .load(R.drawable.loginback) // Replace with your image resource
-                        .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
-                        .into(blurredImageView);
-                    break;
-            }
-        }else{
-            switch(new Random().nextInt(8)) {
-                case 1 : Glide.with(this)
                         .load(R.drawable.loginback) // Replace with your image resource
                         .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
                         .into(blurredImageView);
                     break;
                 case 2 : Glide.with(this)
-                        .load(R.drawable.back2) // Replace with your image resource
+                        .load(R.drawable.back11) // Replace with your image resource
                         .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
                         .into(blurredImageView);
                     break; case 3 : Glide.with(this)
@@ -105,7 +65,51 @@ public class SignupActivity extends AppCompatActivity {
                         .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
                         .into(blurredImageView);
                     break; case 4 : Glide.with(this)
-                        .load(R.drawable.back6) // Replace with your image resource
+                        .load(R.drawable.back4) // Replace with your image resource
+                        .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
+                        .into(blurredImageView);
+                    break; case 5 : Glide.with(this)
+                        .load(R.drawable.back5) // Replace with your image resource
+                        .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
+                        .into(blurredImageView);
+                    break; case 6 : Glide.with(this)
+                        .load(R.drawable.back11) // Replace with your image resource
+                        .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
+                        .into(blurredImageView);
+                    break; case 7 : Glide.with(this)
+                        .load(R.drawable.back4) // Replace with your image resource
+                        .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
+                        .into(blurredImageView);
+                    break; case 8 : Glide.with(this)
+                        .load(R.drawable.back11) // Replace with your image resource
+                        .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
+                        .into(blurredImageView);
+                    break;
+                default: Glide.with(this)
+                        .load(R.drawable.back11) // Replace with your image resource
+                        .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
+                        .into(blurredImageView);
+                    break;
+            }
+        }else{
+
+            switch(new Random().nextInt(8)) {
+
+                case 1 : Glide.with(this)
+                        .load(R.drawable.back4) // Replace with your image resource
+                        .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
+                        .into(blurredImageView);
+                    break;
+                case 2 : Glide.with(this)
+                        .load(R.drawable.back4) // Replace with your image resource
+                        .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
+                        .into(blurredImageView);
+                    break; case 3 : Glide.with(this)
+                        .load(R.drawable.back4) // Replace with your image resource
+                        .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
+                        .into(blurredImageView);
+                    break; case 4 : Glide.with(this)
+                        .load(R.drawable.back11) // Replace with your image resource
                         .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
                         .into(blurredImageView);
                     break; case 5 : Glide.with(this)
@@ -122,7 +126,7 @@ public class SignupActivity extends AppCompatActivity {
                         .into(blurredImageView);
                     break;
                 default: Glide.with(this)
-                        .load(R.drawable.loginback) // Replace with your image resource
+                        .load(R.drawable.back11) // Replace with your image resource
                         .apply(RequestOptions.bitmapTransform(new BlurTransformation(20, 1))) // 25 is the radius, 3 is the sampling
                         .into(blurredImageView);
                     break;

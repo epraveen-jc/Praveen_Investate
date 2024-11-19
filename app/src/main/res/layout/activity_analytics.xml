@@ -1,0 +1,85 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Inve-State Analytics"
+        android:layout_gravity="center"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:textColor="#00AEFF"
+        />
+    <Spinner
+
+        android:id="@+id/state_spinner"
+        android:backgroundTint="#02B2E7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <Spinner
+        android:backgroundTint="#02B2E7"
+        android:id="@+id/district_spinner"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/filter_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Start Analysing "
+        android:backgroundTint="#00C7E2"
+        app:cornerRadius="12dp" />
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+         <WebView
+            android:id="@+id/chart_webview"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"/>
+
+        <ImageButton
+            android:layout_gravity="center"
+            android:background="@color/white"
+            android:scaleType="centerCrop"
+            android:visibility="gone"
+            android:id="@+id/ana_p_id"
+            android:layout_marginBottom="50dp"
+            android:layout_width="200dp"
+            android:layout_height="200dp"/>
+        <ImageView
+            android:background="@color/white"
+            android:scaleType="fitCenter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="450dp"
+            android:id="@+id/imageana"
+            android:src="@drawable/analyticsback"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+
+            android:id="@+id/ana_tv2"
+            android:gravity="start"
+            android:justificationMode="inter_word"
+        android:lineSpacingExtra="4dp"
+
+
+            android:layout_marginTop="255dp"
+            android:text="We offer two analytical charts that are highly useful for property analysis. The first chart helps count the number of properties available for sale based on location, while the second chart highlights price trends for different properties over the years, showcasing fluctuations in their values.\nTo begin, first select the state and district from the provided options. Once selected, press the Start Analyzing button. This will generate real-time analytics, providing you with insightful data for your selected region."
+
+            />
+
+    </FrameLayout>
+
+</LinearLayout>

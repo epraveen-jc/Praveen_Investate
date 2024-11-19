@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:padding="8dp"
     android:layout_gravity="center"
-    android:background="@drawable/glass_background"
+    android:background="@drawable/glass_background2"
 
     android:id="@+id/linearlayoutbg"
 

@@ -73,6 +73,7 @@ import com.example.praveen_investate.model.Post;
 import com.example.praveen_investate.adapter.NotificationAdapter;
 
 import com.example.praveen_investate.model.PropertyType;
+import com.example.praveen_investate.ui.AnalyticsActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -85,7 +86,8 @@ public class HomeActivity extends AppCompatActivity {
     private PostAdapter adapter;
     private List<Post> postList;
     private ProgressBar progressBar;
-    private ImageButton setting ,refresh ,notify, btnSearchByCat ,  searchBtnHomeBottomNavi , editprofile ;
+    private  TextView tvp;
+    private ImageButton setting ,refresh ,notify, btnSearchByCat ,  searchBtnHomeBottomNavi , editprofile ,ana;
     private boolean isGifPlaying = false;
     private SearchView searchView;
     private DatabaseHelper databaseHelper;
@@ -108,7 +110,10 @@ public class HomeActivity extends AppCompatActivity {
         ImageButton btnOpenUpload1 = findViewById(R.id.btnOpenUpload);
         searchView = findViewById(R.id.home_searchbar);
         btnSearchByCat = findViewById(R.id.searchByCat);
+        ana = findViewById(R.id.ana);
         editprofile = findViewById(R.id.editprofile);
+ tvp = findViewById(R.id.properties_available);
+
 
         try{
             if(databaseHelper.getProfile().getProfileType().equalsIgnoreCase("client")){
@@ -140,7 +145,18 @@ public class HomeActivity extends AppCompatActivity {
             ToastMaker.toast(e.toString(),this);
         }
 
-        ImageButton chat1 = findViewById(R.id.cha12t);
+        ana.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new Handler().postDelayed(() -> {
+                    Intent intent = new Intent(HomeActivity.this, AnalyticsActivity.class);
+                    startActivity(intent);
+                }, 2000);
+
+            }
+        });
+
+
 
 
         searchBtnHomeBottomNavi = findViewById(R.id.searchBtnHomeBottomNavi);
@@ -148,7 +164,7 @@ public class HomeActivity extends AppCompatActivity {
         searchBtnHomeBottomNavi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                tvp.setVisibility(View.GONE);
                 activateSearchBar();
             }
         });
@@ -159,7 +175,12 @@ public class HomeActivity extends AppCompatActivity {
         searchView.setOnCloseListener(new SearchView.OnCloseListener() {
             @Override
             public boolean onClose() {
+                tvp.setVisibility(View.VISIBLE);
                 hideSearchBar();
+
+                new Handler().postDelayed(() -> {
+                    tvp.setVisibility(View.GONE);
+                }, 10000);
                 return true; // Return true to indicate we handled the close
             }
         });
@@ -192,7 +213,7 @@ public class HomeActivity extends AppCompatActivity {
 
         Glide.with(this)
                 .asBitmap() // Load as static image to show the first frame only
-                .load(R.drawable.categoriesanime)  // Replace with your actual GIF file in drawable
+                .load(R.drawable.search_by_cat)  // Replace with your actual GIF file in drawable
                 .apply(new RequestOptions().frame(0))  // Show only the first frame
                 .into(btnSearchByCat);
 
@@ -208,6 +229,14 @@ public class HomeActivity extends AppCompatActivity {
                 .apply(new RequestOptions().frame(0))  // Show only the first frame
                 .into(editprofile);
 
+        Glide.with(this)
+                .asBitmap() // Load as static image to show the first frame only
+                .load(R.drawable.anaprogress)  // Replace with your actual GIF file in drawable
+                .apply(new RequestOptions().frame(0))  // Show only the first frame
+                .into(ana);
+
+
+        setGifOnTouch(ana,R.drawable.anaprogress);
 
         setGifOnTouch(editprofile,R.drawable.profile_for_bottom_nav);
         setGifOnTouch(searchBtnHomeBottomNavi,R.drawable.search_anime);
@@ -215,7 +244,7 @@ public class HomeActivity extends AppCompatActivity {
         setGifOnTouch(setting, R.drawable.settings);
         setGifOnTouch(notify,R.drawable.noti);
         setGifOnTouch(btnOpenUpload1,R.drawable.upload);
-        setGifOnTouch(btnSearchByCat,R.drawable.categoriesanime);
+        setGifOnTouch(btnSearchByCat,R.drawable.search_by_cat);
         setupSearchView();
 
 
@@ -235,10 +264,11 @@ public class HomeActivity extends AppCompatActivity {
         btnSearchByCat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ToastMaker.toast("Search Your Properties By Category..!",HomeActivity.this);
                 new Handler().postDelayed(() -> {
                 Intent intent = new Intent(HomeActivity.this,CategoryActivity.class);
                 startActivity(intent);
-            }, 1200);
+            }, 2000);
             }
         });
 
@@ -287,6 +317,7 @@ public class HomeActivity extends AppCompatActivity {
         btnOpenUpload1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ToastMaker.toast("Upload Your Properties..!",HomeActivity.this);
                 new Handler().postDelayed(() -> {
                     // Create an Intent to open UploadActivity
                     Intent intent = new Intent(HomeActivity.this, UploadActivity.class);
@@ -302,8 +333,9 @@ public class HomeActivity extends AppCompatActivity {
 
         progressBar.setVisibility(View.VISIBLE);
         new Handler().postDelayed(() -> {
+            ToastMaker.toast("Fetching Properties From Server ..!",HomeActivity.this);
             feed();
-        }, 1000);
+        }, 2000);
 
 
 
@@ -326,6 +358,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
     private void setupSearchView() {
+        tvp.setVisibility(View.GONE);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -347,6 +380,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
     private void activateSearchBar() {
+        tvp.setVisibility(View.GONE);
         // Show and focus on the SearchView
         if (searchView.getVisibility() == View.GONE) {
             searchView.setVisibility(View.VISIBLE);
@@ -728,6 +762,10 @@ public class HomeActivity extends AppCompatActivity {
 
 
         requestQueue.add(jsonArrayRequest);
+        tvp.setVisibility(View.VISIBLE);
+        new Handler().postDelayed(() -> {
+            tvp.setVisibility(View.GONE);
+        }, 10000);
     }
 
 

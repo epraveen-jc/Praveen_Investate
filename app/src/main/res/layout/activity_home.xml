@@ -9,14 +9,14 @@
     <LinearLayout
 
         android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="@drawable/glass_background"
+        android:layout_height="70dp"
+        android:background="@drawable/glass_background2"
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             android:background="@drawable/profilepicrad"
             android:scaleType="centerCrop"
             android:src="@drawable/images" />
@@ -25,14 +25,14 @@
             android:layout_width="181dp"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingLeft="10dp">
+            android:paddingLeft="5dp">
 
             <TextView
                 android:id="@+id/profileName"
                 android:layout_width="161dp"
                 android:layout_height="25dp"
                 android:text="priyanka"
-                android:textSize="17sp"
+                android:textSize="15sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -50,7 +50,7 @@
 
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginTop="6.5dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
             android:background="@color/white"
             android:scaleType="centerCrop" />
@@ -60,7 +60,7 @@
             android:id="@+id/refreshdata"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:layout_marginTop="6.5dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
             android:background="@color/white"
             android:scaleType="centerCrop"/>
@@ -70,7 +70,7 @@
             android:layout_width="35dp"
             android:layout_height="35dp"
             android:layout_centerInParent="true"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="5dp"
             android:layout_marginRight="10dp"
             android:background="@color/white"
             android:scaleType="centerCrop" />
@@ -81,18 +81,34 @@
     </LinearLayout>
 
 
-    <SearchView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/home_searchbar"
-        android:queryHint="Search Properties Here"
-        android:visibility="gone"
-        />
     <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/properties_available"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:textSize="20dp"
+            android:text="Properties Available For you"
+            android:textColor="#04ADA5"
+            />
+        <SearchView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/home_searchbar"
+            android:queryHint="Search Properties Here"
+            android:visibility="gone"
+            />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:paddingTop="2dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@drawable/glass_background"
         >
 
         <ProgressBar
@@ -112,41 +128,41 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/glass_background"
+        android:background="@drawable/glass_background2"
         android:gravity="center"
         android:layout_marginTop="2dp"
         android:orientation="horizontal"> <!-- Centering the content -->
 
         <ImageButton
             android:background="@color/white"
-            android:layout_width="60dp"
+            android:layout_width="45dp"
             android:scaleType="centerCrop"
             android:id="@+id/searchByCat"
-            android:layout_height="60dp"
-            android:layout_marginEnd="20dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="30dp"
             />
         <ImageButton
             android:id="@+id/searchBtnHomeBottomNavi"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginEnd="20dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="30dp"
             android:background="@color/white"
             android:scaleType="centerCrop" />
 
         <ImageButton
             android:id="@+id/btnOpenUpload"
-            android:layout_width="60dp"
+            android:layout_width="45dp"
             android:background="@color/white"
             android:scaleType="centerCrop"
-            android:layout_height="60dp"
-            android:layout_marginEnd="20dp" />
+            android:layout_height="45dp"
+            android:layout_marginEnd="30dp" />
 
 
         <ImageButton
-            android:id="@+id/cha12t"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:layout_marginEnd="20dp"
+            android:id="@+id/ana"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginEnd="35dp"
             android:background="@color/white"
             android:scaleType="centerCrop" />
 
@@ -156,8 +172,8 @@
             android:background="@color/white"
 
             android:scaleType="centerCrop"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             />
 
 

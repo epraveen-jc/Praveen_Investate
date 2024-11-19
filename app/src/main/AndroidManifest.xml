@@ -41,7 +41,7 @@
         <activity android:name=".ui.SettingsActivity" />
         <activity android:name=".ui.EditPostActivity" />
         <activity android:name=".ui.CategoryActivity" />
-        <activity android:name=".ui.ChatRoomActivity" />
+        <activity android:name=".ui.AnalyticsActivity" />
 
         <activity android:name=".ui.PropertyListActivity" />
 

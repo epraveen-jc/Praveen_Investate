@@ -32,7 +32,12 @@ android {
         targetCompatibility = JavaVersion.VERSION_11
     }
 }
+
+
+
 dependencies {
+
+
     implementation("com.github.bumptech.glide:glide:4.15.1")
     implementation("jp.wasabeef:glide-transformations:4.3.0")
     implementation(libs.recyclerview)
