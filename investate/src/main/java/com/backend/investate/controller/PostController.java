@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
-@CrossOrigin(origins = "http://10.0.2.2:1010") // Adjust the origin as necessary
+@CrossOrigin(origins = "*") // Adjust the origin as necessary
 @RequestMapping("/api/posts")
 public class PostController {
     /**

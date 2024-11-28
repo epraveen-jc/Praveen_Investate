@@ -31,10 +31,20 @@
     </properties>
     <dependencies>
 
+       
+       
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
+
+       
+<dependency>
+    <groupId>org.codehaus.plexus</groupId>
+    <artifactId>plexus-utils</artifactId>
+    <version>4.0.2</version>
+</dependency>
+
         
         <dependency>
             <groupId>org.projectlombok</groupId>

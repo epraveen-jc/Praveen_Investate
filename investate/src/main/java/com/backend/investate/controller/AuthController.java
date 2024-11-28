@@ -13,7 +13,7 @@ import com.backend.investate.model.Profile;
 import com.backend.investate.services.ProfileService;
 
 @RestController
-@CrossOrigin(origins = "http://10.0.2.2:1010") // Allow requests from this origin
+@CrossOrigin(origins = "*") // Allow requests from this origin
 @RequestMapping("/api/auth")
 public class AuthController {
 
@@ -127,19 +127,7 @@ public class AuthController {
         }
     }
 
-    @GetMapping("/email/{email}")
-    public ResponseEntity<Map<String, Object>> getProfileByEmail(@PathVariable String email) {
-        Map<String, Object> response = new HashMap<>();
-        return ResponseEntity.of(profileService.getProfileByEmail(email)
-            .map(profile -> {
-                response.put("profile", profile);
-                return ResponseEntity.ok(response);
-            })
-            .orElseGet(() -> {
-                response.put("error", "Profile not found.");
-                return ResponseEntity.status(404).body(response);
-            }));
-    }
+  
 
 
 
