@@ -12,8 +12,9 @@ import com.backend.investate.EncryptionNDecryption.Decryption;
 import com.backend.investate.model.Profile;
 import com.backend.investate.services.ProfileService;
 
+
 @RestController
-@CrossOrigin(origins = "*") // Allow requests from this origin
+
 @RequestMapping("/api/auth")
 public class AuthController {
 
@@ -33,6 +34,12 @@ public class AuthController {
             return ResponseEntity.status(400).body(response);
         }
     }
+
+     @GetMapping("/investate")  // Maps GET requests to /hello
+    public String sayHello() {
+        return "your investate app is working perfectly no server connection issues";
+    }
+    
 
     @GetMapping("/user/exist-or-not/{name}")
     public ResponseEntity<Map<String, String>> checkUserExistence(@PathVariable String name) {

@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @RestController
-@CrossOrigin(origins = "*") // Adjust the origin as necessary
+
 @RequestMapping("/api/posts")
 public class PostController {
     /**
